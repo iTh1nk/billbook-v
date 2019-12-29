@@ -45,7 +45,7 @@ export default class Navs extends Component {
     return (
       <>
         <Navbar bg="dark" variant="dark" expand="sm">
-          <Navbar.Brand href="/">Bill Book</Navbar.Brand>
+          <Navbar.Brand href="/">BillBook-V</Navbar.Brand>
           {this.props.auth ? (
             <Nav.Link href="" style={welcomStyle}>
               Hi: {this.props.user} ({this.props.group})

@@ -1,0 +1,42 @@
+.userModal {
+    margin-top: 100px !important;
+    width: 300px;
+    margin: auto;
+}
+
+.maskLogin {
+    background: rgba(0, 0, 0, 0.9) !important;
+    z-index: 10;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+}
+
+.selectMask_box_login {
+    background: rgba(0, 0, 0, 0);
+    transition: all .2s linear;
+    text-align: center;
+}
+
+.formCon {
+    margin-top: 2em;
+    width: 25em !important;
+}
+
+.error-box {
+    border: 2px solid #FF6565 !important
+}
+
+.error-message {
+    color: #FF6565;
+    /* padding: .5em .2em;
+    height: 1em;
+    position: absolute; */
+    font-size: .8em;
+    margin-left: 2em;
+    font-weight: bolder;
+}
+
+.formLabel {
+    font-weight: bolder;
+}

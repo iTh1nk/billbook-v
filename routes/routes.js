@@ -8,7 +8,6 @@ module.exports = (app, passport) => {
       failureRedirect: "/"
     })
   );
-
   app.post(
     "/api/login/",
     passport.authenticate("local-login", {
@@ -16,6 +15,7 @@ module.exports = (app, passport) => {
       failureRedirect: "/"
     })
   );
+  app.post("/api/signupadmin/", controller.signupAdmin);
 
   app.post("/api/newactivity/", controller.newActivity);
   app.get("/api/getactivity0/", controller.getActivity0);
@@ -35,6 +35,8 @@ module.exports = (app, passport) => {
   app.get("/api/getuser/", controller.getUser);
   app.get("/api/isloggedin/", isLoggedIn);
   app.get("/api/logout/", logout);
+  app.post("/api/updateuser/", controller.updateUser);
+  app.post("/api/deleteuser/:username", controller.deleteUser);
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

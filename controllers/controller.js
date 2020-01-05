@@ -3,6 +3,11 @@ const db = require("../models");
 const _ = require("lodash");
 const color = require("colors");
 const moment = require("moment");
+const bCrypt = require("bcrypt-nodejs");
+
+const generateHash = function(password) {
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+};
 
 //User
 module.exports.getUser = (req, res) => {
@@ -18,6 +23,48 @@ module.exports.getUser = (req, res) => {
       res.json(err);
     });
 };
+module.exports.signupAdmin = (req, res) => {
+  let data = _.pick(req.body, ["username", "password", "group"]);
+  data.password = generateHash(data.password);
+  db.User.create(data)
+    .then(dbUser => {
+      res.json({ message: "Success added!" });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+module.exports.updateUser = (req, res) => {
+  let data = _.pick(req.body, ["password", "group"]);
+  let username = _.pick(req.body, ["username"]);
+  data.password = generateHash(data.password);
+  db.User.findOneAndUpdate(
+    { username: username.username },
+    {
+      $set: {
+        password: data.password,
+        group: data.group
+      }
+    }
+  )
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+module.exports.deleteUser = (req, res) => {
+  let data = req.params.username;
+  db.User
+    .findOneAndDelete({username: data})
+    .then(dbUser => {
+      res.json({message: "y"});
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
 //Activity
 module.exports.newActivity = (req, res) => {

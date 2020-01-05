@@ -29,7 +29,8 @@ class Signup extends Component {
 
     let signupData = {
       username: document.getElementById("formSignupUsername").value,
-      password: document.getElementById("formSignupPassword").value
+      password: document.getElementById("formSignupPassword").value,
+      group: document.getElementById("formSignupGroup").value
     };
 
     Axios.post("/api/signup/", signupData)
@@ -47,6 +48,43 @@ class Signup extends Component {
                 loggingInStyle: ""
               });
               window.location.replace("/");
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleOnClickSubmitAdmin = () => {
+    this.setState({
+      dateSelected: !this.state.dateSelected
+    });
+
+    let signupData = {
+      username: document.getElementById("formSignupUsername").value,
+      password: document.getElementById("formSignupPassword").value,
+      group: document.getElementById("formSignupGroup").value
+    };
+
+    Axios.post("/api/signupadmin/", signupData)
+      .then(resp => {
+        Axios.get("/api/isloggedin/")
+          .then(respSub => {
+            console.log(respSub);
+            if (respSub.data.message === "n") {
+              this.setState({
+                errorStyle: "",
+                errorMessage: respSub.data.errorMessage
+              });
+            } else {
+              this.setState({
+                loggingInStyle: ""
+              });
+              // window.location.replace("/");
             }
           })
           .catch(err => {
@@ -77,7 +115,7 @@ class Signup extends Component {
     const titleStyle = {
       fontWeight: "bold",
       fontSize: "1.6em"
-    }
+    };
     return (
       <>
         <div
@@ -94,9 +132,13 @@ class Signup extends Component {
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              this.handleOnClickSubmit();
+              // this.handleOnClickSubmit();
+              this.handleOnClickSubmitAdmin();
+              document.getElementById("formSignupPassword").value = "";
+              document.getElementById("formSignupPassword2").value = "";
+              document.getElementById("formSignupGroup").value = "";
+              resetForm();
               setTimeout(() => {
-                resetForm();
                 setSubmitting(false);
               }, 2000);
             }}
@@ -111,9 +153,9 @@ class Signup extends Component {
               isSubmitting
             }) => (
               <Form onSubmit={handleSubmit}>
-                <Form.Group>
+                {/* <Form.Group>
                   <Form.Label style={titleStyle}>Please Signup: </Form.Label>
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group>
                   <Form.Label style={errorStyle}>
                     {this.state.errorMessage}
@@ -173,10 +215,17 @@ class Signup extends Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     values={values.gpin2}
-                    className={
-                      errors.gpin2 ? "error-box" : null
-                    }
+                    className={errors.gpin2 ? "error-box" : null}
                   />
+                </Form.Group>
+                <Form.Group controlId="formSignupGroup">
+                  <Form.Label>Choose Group</Form.Label>
+                  <Form.Control as="select">
+                    <option>Select...</option>
+                    <option>Admin</option>
+                    <option>Member</option>
+                    <option>Guest</option>
+                  </Form.Control>
                 </Form.Group>
                 <br />
                 <Button

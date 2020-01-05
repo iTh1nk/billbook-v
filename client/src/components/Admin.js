@@ -610,6 +610,117 @@ function UserInfo(props) {
   );
 }
 
+// User Tab Starts
+function updateUserData (e) {
+  e.preventDefault();
+  let data = {
+    username: document.getElementById("userDataChoose").value,
+    password: document.getElementById("userDataPassword").value,
+    group: document.getElementById("userDataGroup").value
+  }
+  Axios
+    .post("/api/updateuser/", data)
+    .then(resp => {
+      console.log("User Info Updated!");
+      document.getElementById("userDataChoose").value = "";
+      document.getElementById("userDataPassword").value = "";
+      document.getElementById("userDataGroup").value = "";
+      window.location.reload();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+function deleteUserData (e) {
+  e.preventDefault();
+  let data = document.getElementById("userDataDelChoose").value;
+  Axios
+    .post("/api/deleteuser/" + data)
+    .then(resp => {
+      console.log("Deleted!");
+      window.location.reload();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+function UpdateUser () {
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    Axios.get("/api/getuser/")
+      .then(resp => {
+        // console.log("newStatementUsers: ", resp.data)
+        setUserData(resp.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [])
+  return (
+    <div>
+      <Form
+        onSubmit={e => {
+          updateUserData(e);
+        }}
+      >
+        <Form.Label style={titleStyle}>Update User: </Form.Label>
+        <Form.Group controlId="userDataChoose">
+          <Form.Label>Choose User</Form.Label>
+          <Form.Control as="select">
+            <option>Select...</option>
+            {userData.map(item => (
+              <option key={item._id}>{item.username}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="userDataPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="text" placeholder="New password..." />
+        </Form.Group>
+
+        <Form.Group controlId="userDataGroup">
+          <Form.Label>Group</Form.Label>
+          <Form.Control as="select">
+            <option>Select...</option>
+            <option>Admin</option>
+            <option>Member</option>
+            <option>Guest</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Button variant="outline-success" type="submit" className="float-right">
+          Submit
+        </Button>
+      </Form>
+      <br /><br />
+      <Form
+        onSubmit={e => {
+          deleteUserData(e);
+        }}
+      >
+        <Form.Label style={titleStyle}>Delete User: </Form.Label>
+        <Form.Group controlId="userDataDelChoose">
+          <Form.Label>Choose User</Form.Label>
+          <Form.Control as="select">
+            <option>Select...</option>
+            {userData.map(item => (
+              <option key={item._id}>{item.username}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+
+        <Button variant="outline-danger" type="submit" className="float-right">
+          Delete
+        </Button>
+      </Form>
+      <br /><br />
+    </div>
+  )
+}
+
 function UserTab() {
   const [users, setUsers] = useState([]);
 
@@ -629,11 +740,17 @@ function UserTab() {
       <hr />
       {/* <Signup />
       <hr /> */}
+      <div style={titleStyle}>Add User: </div>
+      <Signup />
+      <hr />
+      <UpdateUser />
+      <hr />
       <UserInfo users={users} />
     </>
   );
 }
 
+// General main display
 function WelcomTab() {
   const welcomeStyle = {
     textAlign: "center",
@@ -663,13 +780,13 @@ function WelcomTab() {
 function tabReducer(state, action) {
   switch (action.type) {
     case "activity":
-      return (<ActivityTab />);
+      return <ActivityTab />;
     case "statement":
-      return (<StatementTab />);
+      return <StatementTab />;
     case "cycle":
-      return (<CycleTab />);
+      return <CycleTab />;
     case "user":
-      return (<UserTab />);
+      return <UserTab />;
     default:
       return <WelcomTab />;
   }

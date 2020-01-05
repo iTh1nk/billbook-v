@@ -1,5 +1,5 @@
-var bCrypt = require('bcrypt-nodejs');
-var color = require("colors");
+const bCrypt = require('bcrypt-nodejs');
+const color = require("colors");
 
 module.exports = function (passport, user) {
     var User = user;

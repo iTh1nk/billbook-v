@@ -18,19 +18,19 @@ module.exports = (app, passport) => {
   app.post("/api/signupadmin/", isLoggedInAPI, controller.signupAdmin);
 
   app.post("/api/newactivity/", isLoggedInAPI, controller.newActivity);
-  app.get("/api/getactivity0/", controller.getActivity0);
-  app.get("/api/getactivity1/:user", controller.getActivity1);
+  app.get("/api/getactivity0/",isLoggedInAPI, controller.getActivity0);
+  app.get("/api/getactivity1/:user", isLoggedInAPI, controller.getActivity1);
   app.post("/api/updateactivity0/", isLoggedInAPI, controller.updateActivity0);
   app.post("/api/updateactivity1/", isLoggedInAPI, controller.updateActivity1);
   app.post("/api/approveactivity/", isLoggedInAPI, controller.approveActivity);
 
   app.post("/api/newcycle/", isLoggedInAPI, controller.newCycle);
-  app.get("/api/getcycle/", controller.getCycle);
+  app.get("/api/getcycle/", isLoggedInAPI, controller.getCycle);
   app.post("/api/updatecycle/", isLoggedInAPI, controller.updateCycle);
 
   app.post("/api/newstatement/", isLoggedInAPI, controller.newStatement);
   app.post("/api/updatestatement/", isLoggedInAPI, controller.updateStatement);
-  app.get("/api/getstatement/", controller.getStatement);
+  app.get("/api/getstatement/", isLoggedInAPI, controller.getStatement);
 
   app.get("/api/getuser/", isLoggedInAPI, controller.getUser);
   app.get("/api/isloggedin/", isLoggedInAPI, isLoggedIn);

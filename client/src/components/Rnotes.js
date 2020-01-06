@@ -72,7 +72,7 @@ export default function Rnotes() {
             Test bugs <br />
             Deploy to AWS <br />
             Fill in data <br />
-            Try useReducer for switching tabs <br />
+            Test useReducer<br />
             Setup API routes protection
           </pre>
         }

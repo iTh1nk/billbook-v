@@ -86,7 +86,7 @@ function App() {
               )
             }
           />
-          <Route
+          {/* <Route
             exact
             path="/we0mmm/signup/"
             render={props =>
@@ -96,7 +96,7 @@ function App() {
                 <Signup />
               )
             }
-          />
+          /> */}
           <Route
             exact
             path="/admin/"

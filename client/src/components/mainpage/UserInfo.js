@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -33,6 +33,7 @@ export default function UserInfo(props) {
         setGetDifference(parseFloat(resp.data.totalBalance).toFixed(2) - parseFloat(resp.data.deposit).toFixed(2))
         setGetApproval(resp.data.approval);
         setGetDate(resp.data.updatedAt);
+        dispatch({type: props.user})
       })
       .catch(err => {
         console.log(err);
@@ -105,6 +106,27 @@ export default function UserInfo(props) {
       .matches(/^\d+([.]{0,1}\d{0,2})/, "*Invalid Deposit Amount")
       .required("*Deposit Amount Is Required")
   });
+  const [userShowName, dispatch] = useReducer(userShowNameFun, props.user);
+  function userShowNameFun (state, action) {
+    switch(action.type){
+      case "8731":
+        return "Administrator";
+      case "9299":
+        return "Qian Ma";
+      case "9289":
+        return "Xue Feng";
+      case "9532":
+        return "Chen Huo";
+      case "6223":
+        return "Yuhang He";
+      case "9319":
+        return "Kaishuo Wang";
+      case "8653":
+        return "Meng Zhao";
+      default:
+        return props.user
+    }
+  }
   return (
     <div style={divStyle}>
       <div
@@ -114,13 +136,14 @@ export default function UserInfo(props) {
           fontSize: "1.5em"
         }}
       >
-        Your are logged in as:{" "}
+        You are logged in as:{" "}
       </div>
       <div style={welcomStyle}>
-        {user === "8731" ? " Administrator" : props.user}
+        {/* {user === "8731" ? " Administrator" : props.user} */}
+        {userShowName}
       </div>
       <hr />
-      <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Baloo Bhai" }}>
+      <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>
           Current Status:{" "}
           <div

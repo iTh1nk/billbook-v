@@ -562,7 +562,7 @@ function UserInfo(props) {
             style={{
               marginBottom: "1.5em",
               fontSize: "2em",
-              fontFamily: "Baloo Bhai"
+              fontFamily: "Oswald, sans-serif"
             }}
           >
             <div
@@ -777,24 +777,24 @@ function WelcomTab() {
   );
 }
 
-function tabReducer(state, action) {
-  switch (action.type) {
-    case "activity":
-      return <ActivityTab />;
-    case "statement":
-      return <StatementTab />;
-    case "cycle":
-      return <CycleTab />;
-    case "user":
-      return <UserTab />;
-    default:
-      return <WelcomTab />;
-  }
-}
+
 
 export default function Admin() {
   const [tab, dispatch] = useReducer(tabReducer, <WelcomTab />);
-
+  function tabReducer(state, action) {
+    switch (action.type) {
+      case "activity":
+        return <ActivityTab />;
+      case "statement":
+        return <StatementTab />;
+      case "cycle":
+        return <CycleTab />;
+      case "user":
+        return <UserTab />;
+      default:
+        return <WelcomTab />;
+    }
+  }
   const conStyle = {
     marginTop: "2em",
     marginBottom: "2em",

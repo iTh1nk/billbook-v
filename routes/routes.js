@@ -1,13 +1,13 @@
 const controller = require("../controllers/controller");
 
 module.exports = (app, passport) => {
-  app.post(
-    "/api/signup/",
-    passport.authenticate("local-signup", {
-      successRedirect: "/",
-      failureRedirect: "/"
-    })
-  );
+  // app.post(
+  //   "/api/signup/",
+  //   passport.authenticate("local-signup", {
+  //     successRedirect: "/",
+  //     failureRedirect: "/"
+  //   })
+  // );
   app.post(
     "/api/login/",
     passport.authenticate("local-login", {
@@ -15,28 +15,28 @@ module.exports = (app, passport) => {
       failureRedirect: "/"
     })
   );
-  app.post("/api/signupadmin/", controller.signupAdmin);
+  app.post("/api/signupadmin/", isLoggedInAPI, controller.signupAdmin);
 
-  app.post("/api/newactivity/", controller.newActivity);
-  app.get("/api/getactivity0/", controller.getActivity0);
-  app.get("/api/getactivity1/:user", controller.getActivity1);
-  app.post("/api/updateactivity0/", controller.updateActivity0);
-  app.post("/api/updateactivity1/", controller.updateActivity1);
-  app.post("/api/approveactivity/", controller.approveActivity);
-  
-  app.post("/api/newcycle/", controller.newCycle);
-  app.get("/api/getcycle/", controller.getCycle);
-  app.post("/api/updatecycle/", controller.updateCycle);
+  app.post("/api/newactivity/", isLoggedInAPI, controller.newActivity);
+  app.get("/api/getactivity0/", isLoggedInAPI, controller.getActivity0);
+  app.get("/api/getactivity1/:user", isLoggedInAPI, controller.getActivity1);
+  app.post("/api/updateactivity0/", isLoggedInAPI, controller.updateActivity0);
+  app.post("/api/updateactivity1/", isLoggedInAPI, controller.updateActivity1);
+  app.post("/api/approveactivity/", isLoggedInAPI, controller.approveActivity);
 
-  app.post("/api/newstatement/", controller.newStatement);
-  app.post("/api/updatestatement/", controller.updateStatement);
-  app.get("/api/getstatement/", controller.getStatement);
-  
-  app.get("/api/getuser/", controller.getUser);
-  app.get("/api/isloggedin/", isLoggedIn);
-  app.get("/api/logout/", logout);
-  app.post("/api/updateuser/", controller.updateUser);
-  app.post("/api/deleteuser/:username", controller.deleteUser);
+  app.post("/api/newcycle/", isLoggedInAPI, controller.newCycle);
+  app.get("/api/getcycle/", isLoggedInAPI, controller.getCycle);
+  app.post("/api/updatecycle/", isLoggedInAPI, controller.updateCycle);
+
+  app.post("/api/newstatement/", isLoggedInAPI, controller.newStatement);
+  app.post("/api/updatestatement/", isLoggedInAPI, controller.updateStatement);
+  app.get("/api/getstatement/", isLoggedInAPI, controller.getStatement);
+
+  app.get("/api/getuser/", isLoggedInAPI, controller.getUser);
+  app.get("/api/isloggedin/", isLoggedInAPI, isLoggedIn);
+  app.get("/api/logout/", isLoggedInAPI, logout);
+  app.post("/api/updateuser/", isLoggedInAPI, controller.updateUser);
+  app.post("/api/deleteuser/:username", isLoggedInAPI, controller.deleteUser);
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
@@ -53,9 +53,17 @@ module.exports = (app, passport) => {
     }
   }
 
+  function isLoggedInAPI(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.json({ Message: "Unauthorized Action!" });
+      // res.json({ message: "n" })
+    }
+  }
   function logout(req, res) {
     req.session.destroy(function(err) {
-      res.json({message: "y"})
+      res.json({ message: "y" });
     });
   }
-}
+};

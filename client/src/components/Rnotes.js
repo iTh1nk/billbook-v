@@ -70,10 +70,23 @@ export default function Rnotes() {
         content={
           <pre>
             Test bugs <br />
+            Occasionally monitor and maintenance  <br />
+            Seek server side with Django
+          </pre>
+        }
+      />
+      <Progress
+        version="v 1.0"
+        date="01.05.2020"
+        content={
+          <pre>
+            Test bugs <br />
             Deploy to AWS <br />
             Fill in data <br />
-            Test useReducer<br />
-            Setup API routes protection
+            Test useReducer
+            <br />
+            Setup API routes protection <br />
+            Distributed to users 
           </pre>
         }
       />

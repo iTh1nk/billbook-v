@@ -33,7 +33,7 @@ module.exports = (app, passport) => {
   app.get("/api/getstatement/", isLoggedInAPI, controller.getStatement);
 
   app.get("/api/getuser/", isLoggedInAPI, controller.getUser);
-  app.get("/api/isloggedin/", isLoggedInAPI, isLoggedIn);
+  app.get("/api/isloggedin/", isLoggedIn);
   app.get("/api/logout/", isLoggedInAPI, logout);
   app.post("/api/updateuser/", isLoggedInAPI, controller.updateUser);
   app.post("/api/deleteuser/:username", isLoggedInAPI, controller.deleteUser);

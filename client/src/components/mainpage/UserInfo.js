@@ -112,17 +112,17 @@ export default function UserInfo(props) {
       case "8731":
         return "Administrator";
       case "9299":
-        return "Qian Ma";
+        return "Simon";
       case "9289":
-        return "Xue Feng";
+        return "Xue";
       case "9532":
-        return "Chen Huo";
+        return "Chen & Xue";
       case "6223":
-        return "Yuhang He & Yenan Sun";
+        return "George & Sharon";
       case "9319":
-        return "Kaishuo Wang";
+        return "Kevin & Meng";
       case "8653":
-        return "Meng Zhao";
+        return "Meng";
       default:
         return props.user
     }

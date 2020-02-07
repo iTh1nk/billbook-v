@@ -277,7 +277,7 @@ function newStatement(e) {
 }
 
 function updateStatement(e) {
-  e.preventDefault();
+  // e.preventDefault();
   let data = {
     username: document.getElementById("updateStatementUser").value,
     cycle: document.getElementById("updateStatementCycles").value,

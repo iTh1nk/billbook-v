@@ -277,9 +277,10 @@ function newStatement(e) {
 }
 
 function updateStatement(e) {
+  e.preventDefault();
   let data = {
     username: document.getElementById("updateStatementUser").value,
-    cycle: document.getElementById("updateStatementCycle").value,
+    cycle: document.getElementById("updateStatementCycles").value,
     currentBalance: document.getElementById("updateStatementCurrentBalance")
       .value,
     notes: document.getElementById("updateStatementNotes").value

@@ -205,6 +205,7 @@ module.exports.newStatement = (req, res) => {
     });
 };
 module.exports.updateStatement = (req, res) => {
+  console.log("Conroller: HERE")
   let data = _.pick(req.body, ["username", "cycle", "currentBalance", "notes"]);
   console.log(data);
   db.Statement.findOneAndUpdate(

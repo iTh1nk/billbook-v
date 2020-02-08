@@ -29,7 +29,7 @@ module.exports = (app, passport) => {
   app.post("/api/updatecycle/", isLoggedInAPI, controller.updateCycle);
 
   app.post("/api/newstatement/", isLoggedInAPI, controller.newStatement);
-  app.post("/api/updatestatement/", controller.updateStatement);
+  app.post("/api/updatestatement/", isLoggedInAPI, controller.updateStatement);
   app.get("/api/getstatement/", isLoggedInAPI, controller.getStatement);
 
   app.get("/api/getuser/", isLoggedInAPI, controller.getUser);

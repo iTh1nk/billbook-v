@@ -6,3 +6,4 @@
 * This is a bill book management app for mobile carrier bills;
 * React as front end and Node as backend;
 * Only authenticated user can use this app;
+* Designed admin management page to add, update, or delete users, billing cycles, or statements; 

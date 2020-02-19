@@ -112,7 +112,7 @@ export default function UserInfo(props) {
       case "8731":
         return "Administrator";
       case "9299":
-        return "Simon";
+        return "Qian";
       case "9289":
         return "Xue";
       case "9532":

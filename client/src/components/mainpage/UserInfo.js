@@ -118,7 +118,7 @@ export default function UserInfo(props) {
       case "9532":
         return "Chen & Xue";
       case "6223":
-        return "Yuhang & Yenan & Watch";
+        return "Yuhang(Watch) & Yenan";
       case "9319":
         return "Kaishuo & Meng";
       case "8653":

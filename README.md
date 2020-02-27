@@ -8,3 +8,5 @@
 * Only authenticated user can use this app;
 * Designed admin management page to add, update, or delete users, billing cycles, or statements; 
 * Both front and back end are protected by authentication; 
+---
+* The app use ```Formik``` to do real-time form check; 

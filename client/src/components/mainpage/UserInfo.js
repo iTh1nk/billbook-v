@@ -101,6 +101,10 @@ export default function UserInfo(props) {
   const btnStyle = {
     display: "inline-blockÎ"
   };
+  const notiStyle = {
+    fontWeight: "bold",
+    color: "darkblue",
+  };
   const DepositSchema = Yup.object().shape({
     deposit: Yup.string()
       .matches(/^\d+([.]{0,1}\d{0,2})/, "*Invalid Deposit Amount")
@@ -143,7 +147,7 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      Received Rewards Card Value for : $.
+      <div style={notiStyle}>Received Rewards Card Value for : $.</div>
       <hr />
       <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>

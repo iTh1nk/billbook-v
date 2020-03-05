@@ -101,7 +101,7 @@ export default function UserInfo(props) {
   const btnStyle = {
     display: "inline-blockÎ"
   };
-  const notiStyle = {
+  const warnStyle = {
     fontWeight: "bold",
     color: "darkblue",
   };
@@ -147,7 +147,7 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      <div style={notiStyle}>Received Rewards Card Value for : $.</div>
+      <div style={warnStyle}>Received Rewards Card Value for : $.</div>
       <hr />
       <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>

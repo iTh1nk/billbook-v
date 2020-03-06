@@ -147,7 +147,7 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      <div style={warnStyle}>Received Rewards Card Value for : $.</div>
+      <div style={warnStyle}>Received Rewards Card Value: $.</div>
       <hr />
       <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>

@@ -104,6 +104,7 @@ export default function UserInfo(props) {
   const warnStyle = {
     fontWeight: "bold",
     color: "darkblue",
+    fontStyle: "italic",
   };
   const DepositSchema = Yup.object().shape({
     deposit: Yup.string()

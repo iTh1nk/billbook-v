@@ -9,5 +9,5 @@
 * Designed admin management page to add, update, or delete users, billing cycles, or statements; 
 * Both front and back end are protected by authentication; 
 ---
-* The app use ```Formik``` to do real-time form check include userID and PIN; 
+* The app use ```Formik```, ```Yup``` to do real-time form check include userID and PIN; 
 * Using ```React Hooks``` to display admin page tabs, user name, and share state value between different components;  

@@ -15,7 +15,7 @@ class We0mmm extends Component {
     const ifWeb = "https://coronavirus.1point3acres.com/#stat";
     // const ifWeb = "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik";
     const ifWebStyle = {
-      width: "12em",
+      width: "14em",
       marginLeft: "auto",
       marginRight: "auto"
     };
@@ -37,7 +37,7 @@ class We0mmm extends Component {
           <iframe
             id="inlineFrameExample"
             title="Inline Frame Example"
-            width="200"
+            width="230"
             height="350"
             src={ifWeb}
           ></iframe>

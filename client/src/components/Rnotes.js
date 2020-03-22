@@ -71,7 +71,18 @@ export default function Rnotes() {
           <pre>
             Test bugs <br />
             Occasionally monitor and maintenance  <br />
-            Seek server side with Django
+            Seek server side with Django / Spring
+          </pre>
+        }
+      />
+      <Progress
+        version="v 1.01"
+        date="03.21.2020"
+        content={
+          <pre>
+            Add COVID-19 Data via IFRAME <br />
+            Add Notification Bar <br />
+            Update User Bill Data
           </pre>
         }
       />

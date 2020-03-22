@@ -42,6 +42,7 @@ class We0mmm extends Component {
           </a>
         </div>
         {/* <div style={wStyle}></div> */}
+        <hr />
         <div style={ifWebStyle}>
           <iframe
             id="inlineFrameExample"

@@ -29,7 +29,7 @@ class We0mmm extends Component {
             id="inlineFrameExample"
             title="Inline Frame Example"
             width="300"
-            height="300"
+            height="320"
             src={ifWeb}
           ></iframe>
         </a>

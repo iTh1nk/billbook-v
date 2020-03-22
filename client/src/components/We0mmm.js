@@ -19,6 +19,15 @@ class We0mmm extends Component {
       marginLeft: "auto",
       marginRight: "auto"
     };
+    // const wStyle = {
+    //   marginTop: ".8em",
+    //   marginBottom: ".8em",
+    //   color: "white",
+    //   width: "18em",
+    //   marginLeft: "auto",
+    //   marginRight: "auto",
+    //   boxShadow: "20px 20px 50px black",
+    // };
     return (
       <>
         <div style={{ width: "12em", marginLeft: "auto", marginRight: "auto" }}>
@@ -31,8 +40,8 @@ class We0mmm extends Component {
               alt="No Logins? No Worries!"
             />
           </a>
-          <hr />
         </div>
+        {/* <div style={wStyle}></div> */}
         <div style={ifWebStyle}>
           <iframe
             id="inlineFrameExample"

@@ -13,7 +13,7 @@ class We0mmm extends Component {
     //   boxShadow: "20px 20px 50px black"
     // };
     const ifWeb = "https://coronavirus.1point3acres.com/#stat";
-    // https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik
+    // const ifWeb = "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik";
     return (
       <div style={{ width: "18em", marginLeft: "auto", marginRight: "auto" }}>
         <a href="/login/">
@@ -29,7 +29,7 @@ class We0mmm extends Component {
             id="inlineFrameExample"
             title="Inline Frame Example"
             width="300"
-            height="350"
+            height="300"
             src={ifWeb}
           ></iframe>
         </a>

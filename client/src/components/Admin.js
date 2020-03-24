@@ -587,7 +587,7 @@ function UserInfo(props) {
               </div>
             </div>
             <div>
-              Total Balance:{" "}
+              Total Balance Due:{" "}
               <div style={moneyColor(item.totalBalance, item.deposit)}>
                 $
                 {parseFloat(

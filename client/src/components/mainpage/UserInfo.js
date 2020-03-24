@@ -299,11 +299,20 @@ export default function UserInfo(props) {
                 <Modal.Title>Record Deposit</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                You are about to record
-                <a style={{ color: "green", fontWeight: "bold" }}>
-                  ${deposit}
-                </a>{" "}
+                You are about to record{" "}
+                <a style={{ color: "green", fontWeight: "bold" }}>${deposit}</a>{" "}
                 deposit~
+                <div
+                  style={{
+                    color: "grey",
+                    fontSize: ".8em",
+                    fontStyle: "italic"
+                  }}
+                >
+                  (Attention: You may notice the deposit won't reflect when
+                  you're using a tablet or phone, please try again or use a
+                  computer.)
+                </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>

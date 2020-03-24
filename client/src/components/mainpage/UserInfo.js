@@ -124,7 +124,7 @@ export default function UserInfo(props) {
       case "9299":
         return "Qian";
       case "9289":
-        return "Xue";
+        return "(This account is managed by 9532)";
       case "9532":
         return "Chen & Xue";
       case "6223":
@@ -132,14 +132,20 @@ export default function UserInfo(props) {
       case "9319":
         return "Kaishuo & Meng";
       case "8653":
-        return "Meng";
+        return "(This account is managed by 9319)";
+      case "8820":
+        return "(This account is managed by 6223)";
+      case "9900":
+        return "(This account is managed by 6223)";
+      case "0467":
+        return "(This account is managed by 8731)";
       default:
         return props.user;
     }
   }
   const [userShowWarn, dispatch2] = useReducer(userShowWarnFun, props.user);
   function userShowWarnFun(state, action) {
-    switch(action.type) {
+    switch (action.type) {
       case "8731":
         return "250";
       case "9299":
@@ -149,11 +155,17 @@ export default function UserInfo(props) {
       case "9532":
         return "250";
       case "6223":
-        return "150";
+        return "150 (From 8820)";
       case "9319":
         return "(200 + 200)";
       case "8653":
         return "200";
+      case "8820":
+        return "150";
+      case "9900":
+        return "0";
+      case "0467":
+        return "0";
       default:
         return props.user;
     }
@@ -180,7 +192,10 @@ export default function UserInfo(props) {
           src="attention.gif"
         ></img>
       </div>
-      <div style={warnStyle}>Received Verizon Rewards Card Value (already added to balance): ${userShowWarn}.</div>
+      <div style={warnStyle}>
+        Received Verizon Rewards Card Value (already added to balance): $
+        {userShowWarn}.
+      </div>
       <hr />
       <div
         style={{

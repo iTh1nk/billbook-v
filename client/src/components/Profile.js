@@ -19,6 +19,8 @@ function WelcomTab() {
     padding: "6em"
   };
   return (
+    <>
+    TO BE UPDATED...
     <div style={welcomeStyle}>
       <div
         style={{
@@ -36,6 +38,7 @@ function WelcomTab() {
         - Leonardo da Vinci
       </div>
     </div>
+    </>
   );
 }
 

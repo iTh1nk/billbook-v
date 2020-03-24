@@ -176,8 +176,8 @@ export default function UserInfo(props) {
       <hr />
       <div style={{ display: "inline-block" }}>
         <img
-          style={{ width: "1.3em", height: "1.3em", marginRight: ".3em" }}
-          src="attention.png"
+          style={{ width: "1.5em", height: "1.5em", marginRight: ".3em" }}
+          src="attention.gif"
         ></img>
       </div>
       <div style={warnStyle}>Received Verizon Rewards Card Value (already added to balance): ${userShowWarn}.</div>

@@ -218,7 +218,7 @@ export default function UserInfo(props) {
           </div>
         </div>
         <div>
-          Total Balance:{" "}
+          Total Balance Due:{" "}
           <div style={{ color: getTotalBalance()[1] }}>
             ${getTotalBalance()[0]}
           </div>

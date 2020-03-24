@@ -278,7 +278,9 @@ function ActivityTab() {
           <Form.Control as="select">
             <option>Select...</option>
             {users.map(item => (
-              <option key={item._id}>{item.username}=>{item._id}</option>
+              <option key={item._id}>
+                {item.username}=>{item._id}
+              </option>
             ))}
           </Form.Control>
         </Form.Group>
@@ -646,15 +648,14 @@ function UserInfo(props) {
 }
 
 // User Tab Starts
-function updateUserData (e) {
+function updateUserData(e) {
   e.preventDefault();
   let data = {
     username: document.getElementById("userDataChoose").value,
     password: document.getElementById("userDataPassword").value,
     group: document.getElementById("userDataGroup").value
-  }
-  Axios
-    .post("/api/updateuser/", data)
+  };
+  Axios.post("/api/updateuser/", data)
     .then(resp => {
       console.log("User Info Updated!");
       document.getElementById("userDataChoose").value = "";
@@ -667,11 +668,10 @@ function updateUserData (e) {
     });
 }
 
-function deleteUserData (e) {
+function deleteUserData(e) {
   e.preventDefault();
   let data = document.getElementById("userDataDelChoose").value;
-  Axios
-    .post("/api/deleteuser/" + data)
+  Axios.post("/api/deleteuser/" + data)
     .then(resp => {
       console.log("Deleted!");
       window.location.reload();
@@ -681,7 +681,7 @@ function deleteUserData (e) {
     });
 }
 
-function UpdateUser () {
+function UpdateUser() {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     Axios.get("/api/getuser/")
@@ -692,7 +692,7 @@ function UpdateUser () {
       .catch(err => {
         console.log(err);
       });
-  }, [])
+  }, []);
   return (
     <div>
       <Form
@@ -730,7 +730,8 @@ function UpdateUser () {
           Submit
         </Button>
       </Form>
-      <br /><br />
+      <br />
+      <br />
       <Form
         onSubmit={e => {
           deleteUserData(e);
@@ -751,9 +752,10 @@ function UpdateUser () {
           Delete
         </Button>
       </Form>
-      <br /><br />
+      <br />
+      <br />
     </div>
-  )
+  );
 }
 
 function UserTab() {
@@ -812,8 +814,6 @@ function WelcomTab() {
   );
 }
 
-
-
 export default function Admin() {
   const [tab, dispatch] = useReducer(tabReducer, <WelcomTab />);
   function tabReducer(state, action) {
@@ -849,24 +849,13 @@ export default function Admin() {
       >
         <Nav.Item>
           <Nav.Link
-            eventKey="activity"
+            eventKey="user"
             style={tabStyle}
             onClick={() => {
-              dispatch({ type: "activity" });
+              dispatch({ type: "user" });
             }}
           >
-            Activity
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            eventKey="statement"
-            style={tabStyle}
-            onClick={() => {
-              dispatch({ type: "statement" });
-            }}
-          >
-            Statement
+            User
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -882,13 +871,24 @@ export default function Admin() {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            eventKey="user"
+            eventKey="statement"
             style={tabStyle}
             onClick={() => {
-              dispatch({ type: "user" });
+              dispatch({ type: "statement" });
             }}
           >
-            User
+            Statement
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="activity"
+            style={tabStyle}
+            onClick={() => {
+              dispatch({ type: "activity" });
+            }}
+          >
+            Activity
           </Nav.Link>
         </Nav.Item>
       </Nav>

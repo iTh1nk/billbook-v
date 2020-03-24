@@ -102,6 +102,7 @@ export default function UserInfo(props) {
     display: "inline-blockÎ"
   };
   const warnStyle = {
+    display: "inline-block",
     fontWeight: "bold",
     color: "darkblue",
     fontStyle: "italic",
@@ -148,7 +149,7 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      <div><img src="attention.png"></img></div><div style={warnStyle}>Received Rewards Card Value: $.</div>
+      <div style={{display: "inline-block"}}><img style={{width: "1.3em", height: "1.3em", marginRight: ".3em"}} src="attention.png"></img></div><div style={warnStyle}>Received Rewards Card Value: $.</div>
       <hr />
       <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>

@@ -30,10 +30,14 @@ export default function UserInfo(props) {
         console.log("Get Activity: ", resp);
         setGetDeposit(resp.data.deposit);
         setGetBalance(resp.data.totalBalance);
-        setGetDifference(parseFloat(resp.data.totalBalance).toFixed(2) - parseFloat(resp.data.deposit).toFixed(2))
+        setGetDifference(
+          parseFloat(resp.data.totalBalance).toFixed(2) -
+            parseFloat(resp.data.deposit).toFixed(2)
+        );
         setGetApproval(resp.data.approval);
         setGetDate(resp.data.updatedAt);
-        dispatch({type: props.user})
+        dispatch({ type: props.user });
+        dispatch2({ type: props.user });
       })
       .catch(err => {
         console.log(err);
@@ -74,11 +78,11 @@ export default function UserInfo(props) {
 
   const decideApproval = () => {
     if (getApproval == "Pending") {
-      return ["Pending Approval", "goldenrod"]
+      return ["Pending Approval", "goldenrod"];
     } else {
-      return ["Approved", "green"]
+      return ["Approved", "green"];
     }
-  }
+  };
 
   const divStyle = {
     marginBottom: ".6em",
@@ -105,7 +109,7 @@ export default function UserInfo(props) {
     display: "inline-block",
     fontWeight: "bold",
     color: "darkblue",
-    fontStyle: "italic",
+    fontStyle: "italic"
   };
   const DepositSchema = Yup.object().shape({
     deposit: Yup.string()
@@ -113,8 +117,8 @@ export default function UserInfo(props) {
       .required("*Deposit Amount Is Required")
   });
   const [userShowName, dispatch] = useReducer(userShowNameFun, props.user);
-  function userShowNameFun (state, action) {
-    switch(action.type){
+  function userShowNameFun(state, action) {
+    switch (action.type) {
       case "8731":
         return "Administrator";
       case "9299":
@@ -124,13 +128,34 @@ export default function UserInfo(props) {
       case "9532":
         return "Chen & Xue";
       case "6223":
-        return "Yuhang(Watch) & Yenan";
+        return "Yuhang & Yenan";
       case "9319":
         return "Kaishuo & Meng";
       case "8653":
         return "Meng";
       default:
-        return props.user
+        return props.user;
+    }
+  }
+  const [userShowWarn, dispatch2] = useReducer(userShowWarnFun, props.user);
+  function userShowWarnFun(state, action) {
+    switch(action.type) {
+      case "8731":
+        return "250";
+      case "9299":
+        return "250";
+      case "9289":
+        return "250";
+      case "9532":
+        return "250";
+      case "6223":
+        return "150";
+      case "9319":
+        return "(200 + 200)";
+      case "8653":
+        return "200";
+      default:
+        return props.user;
     }
   }
   return (
@@ -149,9 +174,21 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      <div style={{display: "inline-block"}}><img style={{width: "1.3em", height: "1.3em", marginRight: ".3em"}} src="attention.png"></img></div><div style={warnStyle}>Received Rewards Card Value: $.</div>
+      <div style={{ display: "inline-block" }}>
+        <img
+          style={{ width: "1.3em", height: "1.3em", marginRight: ".3em" }}
+          src="attention.png"
+        ></img>
+      </div>
+      <div style={warnStyle}>Received Rewards Card Value: ${userShowWarn}.</div>
       <hr />
-      <div style={{ marginBottom: "1.5em", fontSize: "2em", fontFamily: "Oswald, sans-serif" }}>
+      <div
+        style={{
+          marginBottom: "1.5em",
+          fontSize: "2em",
+          fontFamily: "Oswald, sans-serif"
+        }}
+      >
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>
           Current Status:{" "}
           <div
@@ -172,10 +209,7 @@ export default function UserInfo(props) {
           </div>
         </div>
         <div>
-          Last Deposit Made:{" "}
-          <div style={{ color: "green" }}>
-            ${getDeposit}
-          </div>
+          Last Deposit Made: <div style={{ color: "green" }}>${getDeposit}</div>
         </div>
         <div>
           Status:{" "}
@@ -186,8 +220,8 @@ export default function UserInfo(props) {
       </div>
       <hr />
       <div style={{ fontWeight: "bold" }}>
-        After transferring deposit to account owner,
-        please specify the amount here:
+        After transferring deposit to account owner, please specify the amount
+        here:
       </div>
       <Formik
         initialValues={{ deposit: "" }}

@@ -151,9 +151,9 @@ export default function UserInfo(props) {
       case "9299":
         return "250";
       case "9289":
-        return "250";
+        return "0";
       case "9532":
-        return "250";
+        return "(250 + 250)";
       case "6223":
         return "150 (From 8820)";
       case "9319":

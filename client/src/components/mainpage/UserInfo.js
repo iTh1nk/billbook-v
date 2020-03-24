@@ -180,7 +180,7 @@ export default function UserInfo(props) {
           src="attention.png"
         ></img>
       </div>
-      <div style={warnStyle}>Received Rewards Card Value: ${userShowWarn}.</div>
+      <div style={warnStyle}>Received Verizon Rewards Card Value: ${userShowWarn}.</div>
       <hr />
       <div
         style={{

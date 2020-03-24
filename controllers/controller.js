@@ -56,15 +56,14 @@ module.exports.updateUser = (req, res) => {
 };
 module.exports.deleteUser = (req, res) => {
   let data = req.params.username;
-  db.User
-    .findOneAndDelete({username: data})
+  db.User.findOneAndDelete({ username: data })
     .then(dbUser => {
-      res.json({message: "y"});
+      res.json({ message: "y" });
     })
     .catch(err => {
       console.log(err);
     });
-}
+};
 
 //Activity
 module.exports.newActivity = (req, res) => {
@@ -169,6 +168,17 @@ module.exports.approveActivity = (req, res) => {
       res.json(err);
     });
 };
+module.exports.delactivityid = (req, res) => {
+  let data = (req.params.activityid).slice(6, (req.params.activityid).length);
+  console.log("******" + data)
+  db.Activity.findOneAndDelete({ _id: data })
+    .then(dbActivity => {
+      res.json({ message: "y" });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 //Statement
 module.exports.getStatement = (req, res) => {
@@ -205,7 +215,7 @@ module.exports.newStatement = (req, res) => {
     });
 };
 module.exports.updateStatement = (req, res) => {
-  console.log("Conroller: HERE")
+  console.log("Conroller: HERE");
   let data = _.pick(req.body, ["username", "cycle", "currentBalance", "notes"]);
   console.log(data);
   db.Statement.findOneAndUpdate(

@@ -23,6 +23,7 @@ module.exports = (app, passport) => {
   app.post("/api/updateactivity0/", isLoggedInAPI, controller.updateActivity0);
   app.post("/api/updateactivity1/", isLoggedInAPI, controller.updateActivity1);
   app.post("/api/approveactivity/", isLoggedInAPI, controller.approveActivity);
+  app.post("/api/delactivityid/:activityid", isLoggedInAPI, controller.delactivityid);
 
   app.post("/api/newcycle/", isLoggedInAPI, controller.newCycle);
   app.get("/api/getcycle/", isLoggedInAPI, controller.getCycle);

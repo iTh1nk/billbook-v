@@ -58,6 +58,17 @@ function updateActivity(e) {
     });
 }
 
+function deleteActivity(e) {
+  let data = document.getElementById("deleteActivityId").value;
+  Axios.post("/api/delactivityid/" + data)
+    .then(resp => {
+      console.log(resp);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
 function ActivityTab() {
   const [users, setUsers] = useState([]);
   const [showUser, setShowUser] = useState(false);
@@ -250,6 +261,29 @@ function ActivityTab() {
         </Form.Group>
         <Button variant="outline-success" type="submit" className="float-right">
           Submit
+        </Button>
+      </Form>
+      <br />
+      <br />
+      <hr />
+      {/* Delete Activity */}
+      <Form
+        onSubmit={e => {
+          deleteActivity(e);
+        }}
+      >
+        <Form.Label style={titleStyle}>Delete Activity</Form.Label>
+        <Form.Group controlId="deleteActivityId">
+          <Form.Label>Choose User</Form.Label>
+          <Form.Control as="select">
+            <option>Select...</option>
+            {users.map(item => (
+              <option key={item._id}>{item.username}=>{item._id}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Button variant="outline-danger" type="submit" className="float-right">
+          Delete
         </Button>
       </Form>
       <br />

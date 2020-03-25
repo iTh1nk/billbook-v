@@ -17,7 +17,8 @@ class We0mmm extends Component {
     const ifWebStyle = {
       width: "14em",
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
+      boxShadow: "20px 20px 50px black"
     };
     // const wStyle = {
     //   marginTop: ".8em",

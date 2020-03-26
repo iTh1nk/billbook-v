@@ -90,7 +90,7 @@ function ActivityTab() {
   const showPlaceHolderBalance = () => {
     for (let i = 0; i < users.length; i++) {
       if (showPlaceHolder == users[i].username) {
-        return "$" + users[i].totalBalance;
+        return "$" + (parseInt(users[i].totalBalance) - parseInt(users[i].deposit)).toString();
       }
     }
   };

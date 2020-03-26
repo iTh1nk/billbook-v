@@ -73,6 +73,8 @@ function ActivityTab() {
   const [users, setUsers] = useState([]);
   const [showUser, setShowUser] = useState(false);
   const [showUserValue, setShowUserValue] = useState("");
+  const [placeHolder, setPlaceHolder] = useState(false);
+  const [showPlaceHolder, setShowPlaceHolder] = useState("");
   const [allUsers, setAllUsers] = useState([]);
 
   const handleShowUserActivity = (e, userArg) => {
@@ -80,9 +82,30 @@ function ActivityTab() {
     setShowUser(true);
   };
 
+  const handleUpdateActivityPlaceHolder = (e, userArg) => {
+    setShowPlaceHolder(userArg);
+    setPlaceHolder(true);
+  };
+
+  const showPlaceHolderBalance = () => {
+    for (let i = 0; i < users.length; i++) {
+      if (showPlaceHolder == users[i].username) {
+        return "$" + users[i].totalBalance;
+      }
+    }
+  };
+
+  const showPlaceHolderDeposit = () => {
+    for (let i = 0; i < users.length; i++) {
+      if (showPlaceHolder == users[i].username) {
+        return "$" + users[i].deposit;
+      }
+    }
+  };
+
   const ShowUserActivity = () => {
     for (let i = 0; i < users.length; i++) {
-      console.log(showUserValue, users[i].username);
+      console.log(showUserValue, users[i]);
       console.log(users.length, i);
       if (showUserValue == users[i].username) {
         return (
@@ -234,7 +257,15 @@ function ActivityTab() {
         <Form.Label style={titleStyle}>Update Activity</Form.Label>
         <Form.Group controlId="updateActivityUser">
           <Form.Label>Choose User</Form.Label>
-          <Form.Control as="select">
+          <Form.Control
+            as="select"
+            onChange={e =>
+              handleUpdateActivityPlaceHolder(
+                e,
+                document.getElementById("updateActivityUser").value
+              )
+            }
+          >
             <option>Select...</option>
             {users.map(item => (
               <option key={item._id}>{item.username}</option>
@@ -242,13 +273,16 @@ function ActivityTab() {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="updateActivityTotalBalance">
-          <Form.Label>Total Balance</Form.Label>
-          <Form.Control type="text" placeholder="Total Balance..." />
+          <Form.Label>Total Balance (input numeric only)</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder={placeHolder ? showPlaceHolderBalance() : "Total Balance..."}
+          />
         </Form.Group>
 
         <Form.Group controlId="updateActivityDeposit">
-          <Form.Label>Deposit</Form.Label>
-          <Form.Control type="text" placeholder="Deposit..." />
+          <Form.Label>Deposit (input numeric only)</Form.Label>
+          <Form.Control type="text" placeholder={placeHolder ? showPlaceHolderDeposit() : "Total Balance..."} />
         </Form.Group>
 
         <Form.Group controlId="updateActivityApproval">

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import "./UserInfo.css";
 import Axios from "axios";
 import Moment from "moment";
-import toaster from "toasted-notes"; 
+import toaster from "toasted-notes";
 
 export default function UserInfo(props) {
   const [afterSub, setAfterSub] = useState("");
@@ -25,12 +25,14 @@ export default function UserInfo(props) {
 
   useEffect(() => {
     toaster.notify(
-      <div style={{ fontWeight: "bold" }}>"These violent delights have violent ends”</div>,
+      <div style={{ fontWeight: "bold" }}>
+        "These violent delights have violent ends”
+      </div>,
       {
         duration: 5000
       }
     );
-  },[]);
+  }, []);
 
   useEffect(() => {
     setUser(props.user);
@@ -196,16 +198,20 @@ export default function UserInfo(props) {
         {userShowName}
       </div>
       <hr />
-      <div style={{ display: "inline-block" }}>
-        <img
-          style={{ width: "1.5em", height: "1.5em", marginRight: ".3em" }}
-          src="attention.gif"
-        ></img>
-      </div>
-      <div style={warnStyle}>
-        Received Verizon Rewards Card Value (already added to balance): $
-        {userShowWarn}.
-      </div>
+      <p className="topNotification">
+        <span>
+          <div style={{ display: "inline-block" }}>
+            <img
+              style={{ width: "1.5em", height: "1.5em", marginRight: ".3em" }}
+              src="attention.gif"
+            ></img>
+          </div>
+          <div style={warnStyle}>
+            Received Verizon Rewards Card Value (already added to balance): $
+            {userShowWarn}.
+          </div>
+        </span>
+      </p>
       <hr />
       <div
         style={{

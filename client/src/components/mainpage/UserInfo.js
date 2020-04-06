@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import "./UserInfo.css";
 import Axios from "axios";
 import Moment from "moment";
-import toaster from "toasted-notes";
+import toaster from "toasted-notes"; 
 
 export default function UserInfo(props) {
   const [afterSub, setAfterSub] = useState("");

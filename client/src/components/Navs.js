@@ -102,7 +102,7 @@ export default class Navs extends Component {
             </Nav>
           </Navbar.Collapse>
           <Form inline id="panda">
-          <div style={{color: "white"}}>"These violent delights have violent ends”</div>
+          {/* <div style={{color: "white"}}>"These violent delights have violent ends”</div> */}
             {/* <Nav.Link href="/beta/" style={{ color: "grey" }}>
               Beta
             </Nav.Link> */}

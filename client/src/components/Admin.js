@@ -105,8 +105,8 @@ function ActivityTab() {
 
   const ShowUserActivity = () => {
     for (let i = 0; i < users.length; i++) {
-      console.log(showUserValue, users[i]);
-      console.log(users.length, i);
+      // console.log(showUserValue, users[i]);
+      // console.log(users.length, i);
       if (showUserValue == users[i].username) {
         return (
           <Table
@@ -146,7 +146,7 @@ function ActivityTab() {
   useEffect(() => {
     Axios.get("/api/getactivity0/")
       .then(resp => {
-        console.log("getActivity0: ", resp.data);
+        // console.log("getActivity0: ", resp.data);
         setUsers(resp.data);
       })
       .catch(err => {
@@ -357,7 +357,7 @@ function updateStatement(e) {
   };
   Axios.post("/api/updatestatement/", data)
     .then(resp => {
-      console.log("updateMent: ", resp);
+      console.log("updateMent: ");
     })
     .catch(err => {
       console.log(err);
@@ -372,7 +372,7 @@ function StatementTab() {
   useEffect(() => {
     Axios.get("/api/getstatement/")
       .then(resp => {
-        console.log("getStatement: ", resp);
+        // console.log("getStatement: ", resp);
         setStatement(resp.data);
       })
       .catch(err => {
@@ -501,7 +501,7 @@ function newCycle(e) {
   };
   Axios.post("/api/newcycle/", data)
     .then(resp => {
-      console.log("New Cycle:", resp);
+      console.log("New Cycle:");
     })
     .catch(err => {
       console.log(err);
@@ -528,7 +528,7 @@ function CycleTab() {
   useEffect(() => {
     Axios.get("/api/getcycle/")
       .then(resp => {
-        console.log("getCycle: ", resp);
+        // console.log("getCycle: ", resp);
         setCycles(resp.data);
       })
       .catch(err => {
@@ -798,7 +798,7 @@ function UserTab() {
   useEffect(() => {
     Axios.get("/api/getactivity0/")
       .then(resp => {
-        console.log("getActivity0: ", resp.data);
+        // console.log("getActivity0: ", resp.data);
         setUsers(resp.data);
       })
       .catch(err => {

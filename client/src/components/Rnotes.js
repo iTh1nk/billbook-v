@@ -7,27 +7,27 @@ const conStyle = {
   width: "28em",
   // height: window.innerHeight,
   backgroundColor: "white",
-  padding: "3em"
+  padding: "3em",
 };
 
 const labelStyle = {
   fontSize: "1.6em",
   marginBottom: ".5em",
-  fontWeight: "bold"
+  fontWeight: "bold",
 };
 
 const textStyle = {
-  fontSize: "1em"
+  fontSize: "1em",
 };
 
 const formStyle = {
-  marginBottom: "2em"
+  marginBottom: "2em",
 };
 
 const dateStyle = {
   fontSize: ".6em",
   marginLeft: "1em",
-  fontStyle: "italic"
+  fontStyle: "italic",
 };
 
 function InProgress() {
@@ -70,8 +70,23 @@ export default function Rnotes() {
         content={
           <pre>
             Test bugs <br />
-            Occasionally monitor and maintenance  <br />
+            Occasionally monitor and maintenance <br />
             Seek server side with Django / Spring
+          </pre>
+        }
+      />
+      <Progress
+        version="v 1.02"
+        date="04.30.2020"
+        content={
+          <pre>
+            Add `toasted-notes` as pop-up notification
+            <br />
+            Side Proj:{" "}
+            <a href="https://github.com/iTh1nk/covid19-react-spring" textDecoration="none">
+              Covid-19 for OC
+            </a>{" "}
+            (React; Spring)
           </pre>
         }
       />
@@ -80,7 +95,7 @@ export default function Rnotes() {
         date="03.21.2020"
         content={
           <pre>
-            Add COVID-19 Data via IFRAME <br />
+            Add COVID-19 / Music Data via IFRAME <br />
             Add Notification Bar <br />
             Update User Bill Data
           </pre>
@@ -97,7 +112,7 @@ export default function Rnotes() {
             Test useReducer
             <br />
             Setup API routes protection <br />
-            Distributed to users 
+            Distributed to users
           </pre>
         }
       />
@@ -111,7 +126,7 @@ export default function Rnotes() {
             <div
               style={{
                 textDecoration: "line-through",
-                display: "inline-block"
+                display: "inline-block",
               }}
             >
               Fill in profile page
@@ -120,7 +135,7 @@ export default function Rnotes() {
             <div
               style={{
                 textDecoration: "line-through",
-                display: "inline-block"
+                display: "inline-block",
               }}
             >
               Setup API routes protection

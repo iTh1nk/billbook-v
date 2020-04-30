@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import "./UserInfo.css";
 import Axios from "axios";
 import Moment from "moment";
-import toaster from "toasted-notes";
+// import toaster from "toasted-notes";
 
 export default function UserInfo(props) {
   const [afterSub, setAfterSub] = useState("");
@@ -23,16 +23,16 @@ export default function UserInfo(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    toaster.notify(
-      <div style={{ fontWeight: "bold" }}>
-        "These violent delights have violent ends”
-      </div>,
-      {
-        duration: 5000
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   toaster.notify(
+  //     <div style={{ fontWeight: "bold" }}>
+  //       "These violent delights have violent ends”
+  //     </div>,
+  //     {
+  //       duration: 5000
+  //     }
+  //   );
+  // }, []);
 
   useEffect(() => {
     setUser(props.user);

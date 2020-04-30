@@ -80,10 +80,10 @@ export default function Rnotes() {
         date="04.30.2020"
         content={
           <pre>
-            Add `toasted-notes` as pop-up notification
+            `toasted-notes` pop-up notification
             <br />
             Side Proj:{" "}
-            <a href="https://github.com/iTh1nk/covid19-react-spring" textDecoration="none">
+            <a href="https://github.com/iTh1nk/covid19-react-spring">
               Covid-19 for OC
             </a>{" "}
             (React; Spring)

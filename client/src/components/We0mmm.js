@@ -7,7 +7,7 @@ function We0mmm() {
   useEffect(() => {
     toaster.notify(
       <div style={{ fontWeight: "bold", color: "#e95421" }}>
-        "04-09 Bill Statement is OUT!”
+        "04-09 Bill Statement is READY!”
       </div>,
       {
         duration: null,

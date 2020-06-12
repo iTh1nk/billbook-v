@@ -207,8 +207,7 @@ export default function UserInfo(props) {
             ></img>
           </div>
           <div style={warnStyle}>
-            Received Verizon Rewards Card Value (already added to balance): $
-            {userShowWarn}.
+            Please let me know if any questions or concerns thru WeChat. 
           </div>
         </span>
       </p>

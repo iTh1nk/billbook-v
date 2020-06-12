@@ -22,7 +22,7 @@ export default function ShowDetail(props) {
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-        Billing Cycle => {props.cycle}
+        Billing Cycle {"=>"} {props.cycle}
       </Button>
       <Collapse in={open}>
         <div id="example-collapse-text" style={{ marginTop: "15px" }}>

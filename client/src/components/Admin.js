@@ -313,7 +313,7 @@ function ActivityTab() {
             <option>Select...</option>
             {users.map(item => (
               <option key={item._id}>
-                {item.username}=>{item._id}
+                {item.username}{"=>"}{item._id}
               </option>
             ))}
           </Form.Control>

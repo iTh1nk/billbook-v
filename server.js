@@ -11,14 +11,28 @@ const flash = require("connect-flash");
 const db = require("./models");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
+const cors = require("cors");
 
 app.use(logger("dev"));
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTION",
+};
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(flash());
 
-app.use(session({ secret: "mac master", cookie: { maxAge: 30 * 60 * 1000 }, resave: true, saveUninitialized: true }));
+app.use(
+  session({
+    secret: "mac master",
+    cookie: { maxAge: 30 * 60 * 1000 },
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,12 +48,15 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/billbookverizon", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/billbookverizon",
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  }
+);
 
 http.listen(PORT, () => {
   console.log(`🌊  App is listening on PORT: ${PORT}`);

@@ -37,9 +37,10 @@ export default function UserInfo(props) {
   useEffect(() => {
     setUser(props.user);
     setGroup(props.group);
-    Axios.get("/api/getactivity1/" + user)
-      .then(resp => {
-        console.log("Get Activity: ", resp);
+    Axios.get("http://localhost:3001/api/getactivity1/" + user, {
+      withCredentials: true,
+    })
+      .then((resp) => {
         setGetDeposit(resp.data.deposit);
         setGetBalance(resp.data.totalBalance);
         setGetDifference(
@@ -51,17 +52,13 @@ export default function UserInfo(props) {
         dispatch({ type: props.user });
         dispatch2({ type: props.user });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   });
 
   const getTotalBalance = () => {
-    // let convertBalance = parseFloat(getBalance).toFixed(2);
-    // let convertDeposit = parseFloat(getDeposit).toFixed(2);
     let color = "";
-    // console.log(convertBalance, "---", convertDeposit)
-    // console.log(getDifference)
     if (getDifference > 0) {
       color = "red";
     } else {
@@ -74,15 +71,15 @@ export default function UserInfo(props) {
     let data = {
       username: user,
       deposit: deposit,
-      totalBalance: getTotalBalance()[0]
+      totalBalance: getTotalBalance()[0],
     };
     document.getElementById("userDeposit").value = "";
-    console.log(data);
-    Axios.post("/api/updateactivity1/", data)
-      .then(resp => {
-        console.log(resp);
+    Axios.post("http://localhost:3001/api/updateactivity1/", data, {
+      withCredentials: true,
+    })
+      .then((resp) => {
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     window.location.reload();
@@ -99,34 +96,34 @@ export default function UserInfo(props) {
   const divStyle = {
     marginBottom: ".6em",
     display: "inline-block",
-    width: "100%"
+    width: "100%",
   };
   const welcomStyle = {
     color: "green",
     display: "inline-block",
     marginLeft: ".3em",
-    fontSize: "1.5em"
+    fontSize: "1.5em",
   };
   const inputStyle = {
     width: "5em",
     height: "2em",
     display: "inline-block",
     marginLeft: "0.5em",
-    marginRight: "0.5em"
+    marginRight: "0.5em",
   };
   const btnStyle = {
-    display: "inline-blockÎ"
+    display: "inline-blockÎ",
   };
   const warnStyle = {
     display: "inline-block",
     fontWeight: "bold",
     color: "darkblue",
-    fontStyle: "italic"
+    fontStyle: "italic",
   };
   const DepositSchema = Yup.object().shape({
     deposit: Yup.string()
       .matches(/^\d+([.]{0,1}\d{0,2})/, "*Invalid Deposit Amount")
-      .required("*Deposit Amount Is Required")
+      .required("*Deposit Amount Is Required"),
   });
   const [userShowName, dispatch] = useReducer(userShowNameFun, props.user);
   function userShowNameFun(state, action) {
@@ -188,7 +185,7 @@ export default function UserInfo(props) {
         style={{
           display: "inline-block",
           fontWeight: "bold",
-          fontSize: "1.5em"
+          fontSize: "1.5em",
         }}
       >
         You are logged in as:{" "}
@@ -207,7 +204,7 @@ export default function UserInfo(props) {
             ></img>
           </div>
           <div style={warnStyle}>
-            Please let me know if any questions or concerns thru WeChat. 
+            Please let me know if any questions or concerns thru WeChat.
           </div>
         </span>
       </p>
@@ -216,7 +213,7 @@ export default function UserInfo(props) {
         style={{
           marginBottom: "1.5em",
           fontSize: "2em",
-          fontFamily: "Oswald, sans-serif"
+          fontFamily: "Oswald, sans-serif",
         }}
       >
         <div style={{ fontWeight: "bold", marginBottom: ".5em" }}>
@@ -226,7 +223,7 @@ export default function UserInfo(props) {
               display: "inline-block",
               fontSize: ".6em",
               color: "grey",
-              fontStyle: "italic"
+              fontStyle: "italic",
             }}
           >
             (since {Moment(getDate).format("MM-DD-YYYY HH:MM")})
@@ -275,7 +272,7 @@ export default function UserInfo(props) {
           handleChange,
           handleSubmit,
           handleBlur,
-          isSubmitting
+          isSubmitting,
         }) => (
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -321,7 +318,7 @@ export default function UserInfo(props) {
                   style={{
                     color: "grey",
                     fontSize: ".8em",
-                    fontStyle: "italic"
+                    fontStyle: "italic",
                   }}
                 >
                   (Attention: You may notice the deposit won't reflect when

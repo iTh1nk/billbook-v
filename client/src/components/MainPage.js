@@ -9,19 +9,18 @@ const conStyle = {
   marginBottom: "2em",
   backgroundColor: "white",
   padding: "2em",
-  width: "90%"
+  width: "90%",
 };
 
 export default function MainPage(props) {
   const [cycles, setCycle] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/getcycle/")
-      .then(resp => {
-        console.log("User Statement: ", resp.data);
+    Axios.get("http://localhost:3001/api/getcycle/", { withCredentials: true })
+      .then((resp) => {
         setCycle(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -34,7 +33,7 @@ export default function MainPage(props) {
         Monthly Statement
       </div>
       {cycles.map((item, index) => (
-        <div key={index} style={{marginBottom: ".6em"}}>
+        <div key={index} style={{ marginBottom: ".6em" }}>
           <ShowDetail cycle={item.date} statement={item.statement} />
         </div>
       ))}

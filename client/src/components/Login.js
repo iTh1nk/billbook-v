@@ -11,53 +11,59 @@ const LoginSchema = Yup.object().shape({
     .required("*GUID Required"),
   gpin: Yup.string()
     .matches(/[0-9]{4}$/, "*Invalid GPIN")
-    .required("*GPIN Required")
+    .required("*GPIN Required"),
 });
 
 class Login extends Component {
   state = {
     loggingInStyle: "none",
     errorStyle: "none",
-    errorMessage: ""
+    errorMessage: "",
   };
 
   handleOnClickSubmit = () => {
     this.setState({
-      dateSelected: !this.state.dateSelected
+      dateSelected: !this.state.dateSelected,
     });
 
     let signupData = {
       username: document.getElementById("loginGuid").value,
-      password: document.getElementById("loginGpin").value
+      password: document.getElementById("loginGpin").value,
     };
 
-    Axios.post("/api/login/", signupData)
-      .then(resp => {
-        Axios.get("/api/isloggedin/")
-          .then(respSub => {
-            console.log("Login: ", respSub);
+    Axios.post("http://localhost:3001/api/login/", signupData, {
+      withCredentials: true,
+    })
+      .then((resp) => {
+        Axios.get("http://localhost:3001/api/isloggedin/", {
+          withCredentials: true,
+        })
+          .then((respSub) => {
             if (respSub.data.message == "n") {
               this.setState({
                 errorStyle: "",
-                errorMessage: respSub.data.errorMessage
+                errorMessage:
+                  respSub.data.errorMessage.length === 0
+                    ? "Server Error"
+                    : respSub.data.errorMessage,
               });
             } else {
               this.setState({
-                loggingInStyle: ""
+                loggingInStyle: "",
               });
               window.location.replace("/");
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  handleOnClickReset = event => {
+  handleOnClickReset = (event) => {
     event.preventDefault();
     document.getElementById("loginGuid").value = "";
     document.getElementById("loginGpin").value = "";
@@ -67,16 +73,16 @@ class Login extends Component {
     const loggingInStyle = {
       display: this.state.loggingInStyle,
       color: "green",
-      fontWeight: "bolder"
+      fontWeight: "bolder",
     };
     const errorStyle = {
       display: this.state.errorStyle,
-      color: "red"
+      color: "red",
     };
     const titleStyle = {
       fontWeight: "bold",
-      fontSize: "1.6em"
-    }
+      fontSize: "1.6em",
+    };
     return (
       <>
         <div
@@ -107,7 +113,7 @@ class Login extends Component {
               handleChange,
               handleSubmit,
               handleBlur,
-              isSubmitting
+              isSubmitting,
             }) => (
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -164,7 +170,7 @@ class Login extends Component {
                   variant="outline-secondary"
                   size="sm"
                   style={{ marginLeft: "10px" }}
-                  onClick={event => {
+                  onClick={(event) => {
                     this.handleOnClickReset(event);
                   }}
                 >

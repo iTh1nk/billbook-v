@@ -12,18 +12,22 @@ module.exports = (app, passport) => {
     "/api/login/",
     passport.authenticate("local-login", {
       successRedirect: "/",
-      failureRedirect: "/"
+      failureRedirect: "/",
     })
   );
   app.post("/api/signupadmin/", isLoggedInAPI, controller.signupAdmin);
 
   app.post("/api/newactivity/", isLoggedInAPI, controller.newActivity);
-  app.get("/api/getactivity0/",isLoggedInAPI, controller.getActivity0);
+  app.get("/api/getactivity0/", isLoggedInAPI, controller.getActivity0);
   app.get("/api/getactivity1/:user", isLoggedInAPI, controller.getActivity1);
   app.post("/api/updateactivity0/", isLoggedInAPI, controller.updateActivity0);
   app.post("/api/updateactivity1/", isLoggedInAPI, controller.updateActivity1);
   app.post("/api/approveactivity/", isLoggedInAPI, controller.approveActivity);
-  app.post("/api/delactivityid/:activityid", isLoggedInAPI, controller.delactivityid);
+  app.post(
+    "/api/delactivityid/:activityid",
+    isLoggedInAPI,
+    controller.delactivityid
+  );
 
   app.post("/api/newcycle/", isLoggedInAPI, controller.newCycle);
   app.get("/api/getcycle/", isLoggedInAPI, controller.getCycle);
@@ -40,31 +44,28 @@ module.exports = (app, passport) => {
   app.post("/api/deleteuser/:username", isLoggedInAPI, controller.deleteUser);
 
   function isLoggedIn(req, res, next) {
+    console.log(req.user)
     if (req.isAuthenticated()) {
       res.json({
         message: "y",
         user: req.user.username,
         id: req.user._id,
-        group: req.user.group
+        group: req.user.group,
       });
-      // return next();
     } else {
-      // res.redirect('/');
       res.json({ message: "n", errorMessage: req.flash("error") });
     }
   }
 
   function isLoggedInAPI(req, res, next) {
     if (req.isAuthenticated()) {
-      console.log("Routes: HERE")
       return next();
     } else {
       res.json({ message: "n", generalMessage: "Unauthorized Action!" });
-      // res.json({ message: "n" })
     }
   }
   function logout(req, res) {
-    req.session.destroy(function(err) {
+    req.session.destroy(function (err) {
       res.json({ message: "y" });
     });
   }

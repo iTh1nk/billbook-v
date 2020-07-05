@@ -12,91 +12,97 @@ const SignupSchema = Yup.object().shape({
   gpin: Yup.string()
     .matches(/[0-9]{4}$/, "*Invalid GPIN")
     .required("*GPIN Required"),
-  gpin2: Yup.string().oneOf([Yup.ref("gpin"), null], "*GPIN Must Match")
+  gpin2: Yup.string().oneOf([Yup.ref("gpin"), null], "*GPIN Must Match"),
 });
 
 class Signup extends Component {
   state = {
     signingUpStyle: "none",
     errorMessage: "",
-    errorStyle: "none"
+    errorStyle: "none",
   };
 
   handleOnClickSubmit = () => {
     this.setState({
-      dateSelected: !this.state.dateSelected
+      dateSelected: !this.state.dateSelected,
     });
 
     let signupData = {
       username: document.getElementById("formSignupUsername").value,
       password: document.getElementById("formSignupPassword").value,
-      group: document.getElementById("formSignupGroup").value
+      group: document.getElementById("formSignupGroup").value,
     };
 
-    Axios.post("/api/signup/", signupData)
-      .then(resp => {
-        Axios.get("/api/isloggedin/")
-          .then(respSub => {
-            console.log(respSub);
+    Axios.post("http://localhost:3001/api/signup/", signupData, {
+      withCredentials: true,
+    })
+      .then((resp) => {
+        Axios.get("http://localhost:3001/api/isloggedin/", {
+          withCredentials: true,
+        })
+          .then((respSub) => {
             if (respSub.data.message === "n") {
               this.setState({
                 errorStyle: "",
-                errorMessage: respSub.data.errorMessage
+                errorMessage: respSub.data.errorMessage,
               });
             } else {
               this.setState({
-                loggingInStyle: ""
+                loggingInStyle: "",
               });
               window.location.replace("/");
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
   handleOnClickSubmitAdmin = () => {
     this.setState({
-      dateSelected: !this.state.dateSelected
+      dateSelected: !this.state.dateSelected,
     });
 
     let signupData = {
       username: document.getElementById("formSignupUsername").value,
       password: document.getElementById("formSignupPassword").value,
-      group: document.getElementById("formSignupGroup").value
+      group: document.getElementById("formSignupGroup").value,
     };
 
-    Axios.post("/api/signupadmin/", signupData)
-      .then(resp => {
-        Axios.get("/api/isloggedin/")
-          .then(respSub => {
-            console.log(respSub);
+    Axios.post("http://localhost:3001/api/signupadmin/", signupData, {
+      withCredentials: true,
+    })
+      .then((resp) => {
+        Axios.get("http://localhost:3001/api/isloggedin/", {
+          withCredentials: true,
+        })
+          .then((respSub) => {
             if (respSub.data.message === "n") {
               this.setState({
                 errorStyle: "",
-                errorMessage: respSub.data.errorMessage
+                errorMessage: respSub.data.errorMessage,
               });
             } else {
               this.setState({
-                loggingInStyle: ""
+                loggingInStyle: "",
               });
               // window.location.replace("/");
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  handleOnClickReset = event => {
+  handleOnClickReset = (event) => {
     event.preventDefault();
     document.getElementById("formSignupUsername").value = "";
     document.getElementById("formSignupPassword").value = "";
@@ -106,15 +112,15 @@ class Signup extends Component {
     const signingUpStyle = {
       display: this.state.signingUpStyle,
       color: "green",
-      fontWeight: "bolder"
+      fontWeight: "bolder",
     };
     const errorStyle = {
       display: this.state.errorStyle,
-      color: "red"
+      color: "red",
     };
     const titleStyle = {
       fontWeight: "bold",
-      fontSize: "1.6em"
+      fontSize: "1.6em",
     };
     return (
       <>
@@ -150,7 +156,7 @@ class Signup extends Component {
               handleChange,
               handleSubmit,
               handleBlur,
-              isSubmitting
+              isSubmitting,
             }) => (
               <Form onSubmit={handleSubmit}>
                 {/* <Form.Group>
@@ -240,7 +246,7 @@ class Signup extends Component {
                   variant="outline-secondary"
                   size="sm"
                   style={{ marginLeft: "10px" }}
-                  onClick={event => this.handleOnClickReset(event)}
+                  onClick={(event) => this.handleOnClickReset(event)}
                 >
                   Reset
                 </Button>

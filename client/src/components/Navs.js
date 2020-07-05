@@ -9,14 +9,14 @@ export default class Navs extends Component {
     this.state = {};
   }
 
-  handleOnClickLogout = event => {
+  handleOnClickLogout = (event) => {
     event.preventDefault();
-    Axios.get("/api/logout/")
-      .then(resp => {
+    Axios.get("http://localhost:3001/api/logout/", { withCredentials: true })
+      .then((resp) => {
         window.location.replace("/");
         console.log("Logged Out!");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -25,22 +25,22 @@ export default class Navs extends Component {
     const logoutStyle = {
       color: "pink",
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
     };
     const loginStyle = {
       color: "lightgreen",
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
     };
     const signupStyle = {
-      color: "lightgreen"
+      color: "lightgreen",
     };
     const welcomStyle = {
-      color: "lightgreen"
+      color: "lightgreen",
     };
     const navLinkStyle = {
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
     };
     return (
       <>
@@ -84,7 +84,7 @@ export default class Navs extends Component {
                 <Nav.Link
                   href=""
                   style={logoutStyle}
-                  onClick={event => this.handleOnClickLogout(event)}
+                  onClick={(event) => this.handleOnClickLogout(event)}
                 >
                   Logout
                 </Nav.Link>
@@ -102,7 +102,7 @@ export default class Navs extends Component {
             </Nav>
           </Navbar.Collapse>
           <Form inline id="panda">
-          {/* <div style={{color: "white"}}>"These violent delights have violent ends”</div> */}
+            {/* <div style={{color: "white"}}>"These violent delights have violent ends”</div> */}
             {/* <Nav.Link href="/beta/" style={{ color: "grey" }}>
               Beta
             </Nav.Link> */}

@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Axios from "axios";
@@ -19,36 +19,25 @@ import Rnotes from "./components/Rnotes";
 import We0mmm from "./components/We0mmm";
 import Admin from "./components/Admin";
 
-function isLoggedIn() {
-  Axios.get("/api/isloggedin/")
-    .then(resp => {
-      console.log("isLoggedIn: ", resp);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState("");
   const [group, setGroup] = useState("");
 
   useEffect(() => {
-    console.log("App isLoggedIn: ", isLoggedIn);
-    Axios.get("/api/isloggedin/")
-      .then(resp => {
+    Axios.get("http://localhost:3001/api/isloggedin/", {
+      withCredentials: true,
+    })
+      .then((resp) => {
         if (resp.data.message === "n") {
-          console.log("App isLoggedIn(n): ", resp);
           setIsLoggedIn(false);
         } else {
-          console.log("App isLoggedIn(y): ", resp);
           setIsLoggedIn(true);
           setUser(resp.data.user);
           setGroup(resp.data.group);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   });
@@ -62,7 +51,7 @@ function App() {
           <Route
             exact
             path="/"
-            render={props =>
+            render={(props) =>
               isLoggedIn ? (
                 <MainPage auth={isLoggedIn} user={user} group={group} />
               ) : (
@@ -73,12 +62,12 @@ function App() {
           <Route
             exact
             path="/profile/"
-            render={props => (isLoggedIn ? <Profile /> : <Login />)}
+            render={(props) => (isLoggedIn ? <Profile /> : <Login />)}
           />
           <Route
             exact
             path="/login/"
-            render={props =>
+            render={(props) =>
               isLoggedIn ? (
                 <MainPage auth={isLoggedIn} user={user} group={group} />
               ) : (
@@ -100,7 +89,7 @@ function App() {
           <Route
             exact
             path="/admin/"
-            render={props =>
+            render={(props) =>
               user === "8731" ? (
                 <Admin auth={isLoggedIn} user={user} group={group} />
               ) : (

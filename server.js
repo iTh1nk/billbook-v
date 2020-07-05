@@ -15,16 +15,6 @@ const cors = require("cors");
 
 app.use(logger("dev"));
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTION",
-};
-app.use(cors(corsOptions));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(flash());
-
 app.use(
   session({
     secret: "mac master",
@@ -36,10 +26,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTION",
+  credentials: true,
+  origin: true,
+  exposedHeaders:
+    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization, Content-Range, X-Content-Range",
+  allowedHeaders:
+    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization, Content-Range, X-Content-Range",
+};
+app.use(cors(corsOptions));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(flash());
+
+app.use("/api/test", (req, res) => {
+  return res.send("hello");
+});
+
 require("./config/passport/passport")(passport, db.User);
 require("./routes/routes")(app, passport);
 
-// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }

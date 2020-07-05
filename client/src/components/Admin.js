@@ -6,7 +6,7 @@ import Moment from "moment";
 
 const titleStyle = {
   fontWeight: "bold",
-  fontSize: "2em"
+  fontSize: "2em",
 };
 
 //Activity
@@ -16,14 +16,17 @@ function newActivity(e) {
     username: document.getElementById("newActivityUser").value,
     totalBalance: document.getElementById("newActivityTotalBalance").value,
     deposit: document.getElementById("newActivityDeposit").value,
-    approval: document.getElementById("newActivityApproval").value
+    approval: document.getElementById("newActivityApproval").value,
   };
-  Axios.post("/api/newactivity", data)
-    .then(resp => {
-      console.log(resp);
+  Axios.post(
+    "http://localhost:3001/api/newactivity",
+    { withCredentials: true },
+    data
+  )
+    .then((resp) => {
       window.location.reload();
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -31,13 +34,16 @@ function newActivity(e) {
 function approveActivity(e) {
   let data = {
     approval: document.getElementById("approveActivityApproval").value,
-    username: document.getElementById("approveActivityUser").value
+    username: document.getElementById("approveActivityUser").value,
   };
-  Axios.post("/api/approveactivity/", data)
-    .then(resp => {
-      console.log("Approve Activity: ", resp);
+  Axios.post(
+    "http://localhost:3001/api/approveactivity/",
+    { withCredentials: true },
+    data
+  )
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -47,24 +53,28 @@ function updateActivity(e) {
     username: document.getElementById("updateActivityUser").value,
     balance: document.getElementById("updateActivityTotalBalance").value,
     deposit: document.getElementById("updateActivityDeposit").value,
-    approval: document.getElementById("updateActivityApproval").value
+    approval: document.getElementById("updateActivityApproval").value,
   };
-  Axios.post("/api/updateactivity0", data)
-    .then(resp => {
-      console.log(resp);
+  Axios.post(
+    "http://localhost:3001/api/updateactivity0",
+    { withCredentials: true },
+    data
+  )
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
 
 function deleteActivity(e) {
   let data = document.getElementById("deleteActivityId").value;
-  Axios.post("/api/delactivityid/" + data)
-    .then(resp => {
-      console.log(resp);
+  Axios.post("http://localhost:3001/api/delactivityid/" + data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -90,7 +100,12 @@ function ActivityTab() {
   const showPlaceHolderBalance = () => {
     for (let i = 0; i < users.length; i++) {
       if (showPlaceHolder == users[i].username) {
-        return "$" + (parseFloat(users[i].totalBalance) - parseFloat(users[i].deposit)).toFixed(2).toString();
+        return (
+          "$" +
+          (parseFloat(users[i].totalBalance) - parseFloat(users[i].deposit))
+            .toFixed(2)
+            .toString()
+        );
       }
     }
   };
@@ -105,8 +120,6 @@ function ActivityTab() {
 
   const ShowUserActivity = () => {
     for (let i = 0; i < users.length; i++) {
-      // console.log(showUserValue, users[i]);
-      // console.log(users.length, i);
       if (showUserValue == users[i].username) {
         return (
           <Table
@@ -144,20 +157,20 @@ function ActivityTab() {
   };
 
   useEffect(() => {
-    Axios.get("/api/getactivity0/")
-      .then(resp => {
-        // console.log("getActivity0: ", resp.data);
+    Axios.get("http://localhost:3001/api/getactivity0/", {
+      withCredentials: true,
+    })
+      .then((resp) => {
         setUsers(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-    Axios.get("/api/getuser/")
-      .then(resp => {
-        // console.log("newStatementUsers: ", resp.data)
+    Axios.get("http://localhost:3001/api/getuser/", { withCredentials: true })
+      .then((resp) => {
         setAllUsers(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -167,7 +180,7 @@ function ActivityTab() {
       <hr />
       {/* Create New Activity */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           newActivity(e);
         }}
       >
@@ -176,7 +189,7 @@ function ActivityTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {allUsers.map(item => (
+            {allUsers.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -210,7 +223,7 @@ function ActivityTab() {
       <hr />
       {/* Approve Activity */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           approveActivity(e);
         }}
       >
@@ -219,7 +232,7 @@ function ActivityTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control
             as="select"
-            onChange={e =>
+            onChange={(e) =>
               handleShowUserActivity(
                 e,
                 document.getElementById("approveActivityUser").value
@@ -227,7 +240,7 @@ function ActivityTab() {
             }
           >
             <option>Select...</option>
-            {users.map(item => (
+            {users.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -250,7 +263,7 @@ function ActivityTab() {
       <hr />
       {/* Update Activity */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           updateActivity(e);
         }}
       >
@@ -259,7 +272,7 @@ function ActivityTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control
             as="select"
-            onChange={e =>
+            onChange={(e) =>
               handleUpdateActivityPlaceHolder(
                 e,
                 document.getElementById("updateActivityUser").value
@@ -267,7 +280,7 @@ function ActivityTab() {
             }
           >
             <option>Select...</option>
-            {users.map(item => (
+            {users.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -276,13 +289,20 @@ function ActivityTab() {
           <Form.Label>Total Balance (input numeric only)</Form.Label>
           <Form.Control
             type="text"
-            placeholder={placeHolder ? showPlaceHolderBalance() : "Total Balance..."}
+            placeholder={
+              placeHolder ? showPlaceHolderBalance() : "Total Balance..."
+            }
           />
         </Form.Group>
 
         <Form.Group controlId="updateActivityDeposit">
           <Form.Label>Deposit (input numeric only)</Form.Label>
-          <Form.Control type="text" placeholder={placeHolder ? showPlaceHolderDeposit() : "Total Balance..."} />
+          <Form.Control
+            type="text"
+            placeholder={
+              placeHolder ? showPlaceHolderDeposit() : "Total Balance..."
+            }
+          />
         </Form.Group>
 
         <Form.Group controlId="updateActivityApproval">
@@ -302,7 +322,7 @@ function ActivityTab() {
       <hr />
       {/* Delete Activity */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           deleteActivity(e);
         }}
       >
@@ -311,9 +331,11 @@ function ActivityTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {users.map(item => (
+            {users.map((item) => (
               <option key={item._id}>
-                {item.username}{"=>"}{item._id}
+                {item.username}
+                {"=>"}
+                {item._id}
               </option>
             ))}
           </Form.Control>
@@ -335,13 +357,14 @@ function newStatement(e) {
     username: document.getElementById("newStatementUser").value,
     cycle: document.getElementById("newStatementCycle").value,
     currentBalance: document.getElementById("newStatementCurrentBalance").value,
-    notes: document.getElementById("newStatementNotes").value || "NA"
+    notes: document.getElementById("newStatementNotes").value || "NA",
   };
-  Axios.post("/api/newstatement", data)
-    .then(resp => {
-      console.log("newStatement: ", resp);
+  Axios.post("http://localhost:3001/api/newstatement", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -353,13 +376,14 @@ function updateStatement(e) {
     cycle: document.getElementById("updateStatementCycles").value,
     currentBalance: document.getElementById("updateStatementCurrentBalance")
       .value,
-    notes: document.getElementById("updateStatementNotes").value
+    notes: document.getElementById("updateStatementNotes").value,
   };
-  Axios.post("/api/updatestatement/", data)
-    .then(resp => {
-      console.log("updateMent: ");
+  Axios.post("http://localhost:3001/api/updatestatement/", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -370,29 +394,29 @@ function StatementTab() {
   const [cycles, setCycles] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/getstatement/")
-      .then(resp => {
-        // console.log("getStatement: ", resp);
+    Axios.get("http://localhost:3001/api/getstatement/", {
+      withCredentials: true,
+    })
+      .then((resp) => {
         setStatement(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
 
-    Axios.get("/api/getuser/")
-      .then(resp => {
-        // console.log("newStatementUsers: ", resp.data)
+    Axios.get("http://localhost:3001/api/getuser/", { withCredentials: true })
+      .then((resp) => {
         setUsers(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
 
-    Axios.get("/api/getcycle/")
-      .then(resp => {
+    Axios.get("http://localhost:3001/api/getcycle/", { withCredentials: true })
+      .then((resp) => {
         setCycles(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -402,7 +426,7 @@ function StatementTab() {
       <hr />
       {/* Create New Statement */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           newStatement(e);
         }}
       >
@@ -411,7 +435,7 @@ function StatementTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {users.map(item => (
+            {users.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -426,7 +450,7 @@ function StatementTab() {
           <Form.Label>Choose Cycle</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {cycles.map(item => (
+            {cycles.map((item) => (
               <option key={item._id}>{item.date}</option>
             ))}
           </Form.Control>
@@ -447,7 +471,7 @@ function StatementTab() {
       <hr />
       {/* Update Statement */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           updateStatement(e);
         }}
       >
@@ -456,7 +480,7 @@ function StatementTab() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {users.map(item => (
+            {users.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -471,7 +495,7 @@ function StatementTab() {
           <Form.Label>Choose Cycle</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {cycles.map(item => (
+            {cycles.map((item) => (
               <option key={item._id}>{item.date}</option>
             ))}
           </Form.Control>
@@ -497,13 +521,14 @@ function StatementTab() {
 //Cycle
 function newCycle(e) {
   let data = {
-    date: document.getElementById("newCycleDate").value
+    date: document.getElementById("newCycleDate").value,
   };
-  Axios.post("/api/newcycle/", data)
-    .then(resp => {
-      console.log("New Cycle:");
+  Axios.post("http://localhost:3001/api/newcycle/", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -511,13 +536,14 @@ function newCycle(e) {
 function udpateCycle(e) {
   let data = {
     chooseDate: document.getElementById("updateCycleChooseDate").value,
-    date: document.getElementById("updateCycleDate").value
+    date: document.getElementById("updateCycleDate").value,
   };
-  Axios.post("/api/updatecycle/", data)
-    .then(resp => {
-      console.log(resp);
+  Axios.post("http://localhost:3001/api/updatecycle/", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -526,12 +552,11 @@ function CycleTab() {
   const [cycles, setCycles] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/getcycle/")
-      .then(resp => {
-        // console.log("getCycle: ", resp);
+    Axios.get("http://localhost:3001/api/getcycle/", { withCredentials: true })
+      .then((resp) => {
         setCycles(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -541,7 +566,7 @@ function CycleTab() {
       <hr />
       {/* Create New Cycle */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           newCycle(e);
         }}
       >
@@ -561,7 +586,7 @@ function CycleTab() {
       <hr />
       {/* Update Cycle */}
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           udpateCycle(e);
         }}
       >
@@ -570,7 +595,7 @@ function CycleTab() {
           <Form.Label>Choose Cycle</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {cycles.map(item => (
+            {cycles.map((item) => (
               <option key={item._id}>{item.date}</option>
             ))}
           </Form.Control>
@@ -596,20 +621,20 @@ function UserInfo(props) {
   const divStyle = {
     marginBottom: ".6em",
     display: "inline-block",
-    width: "100%"
+    width: "100%",
   };
   const welcomStyle = {
     color: "green",
     display: "inline-block",
     marginLeft: ".3em",
-    fontSize: "1.5em"
+    fontSize: "1.5em",
   };
   const inputStyle = {
     width: "5em",
     height: "2em",
     display: "inline-block",
     marginLeft: "0.5em",
-    marginRight: "0.5em"
+    marginRight: "0.5em",
   };
   const moneyColor = (balance, deposit) => {
     if (parseFloat(balance) > parseFloat(deposit)) {
@@ -618,7 +643,7 @@ function UserInfo(props) {
       return { color: "green" };
     }
   };
-  const approvalColor = approval => {
+  const approvalColor = (approval) => {
     if (approval == "Approved") {
       return { color: "green" };
     } else {
@@ -633,14 +658,14 @@ function UserInfo(props) {
             style={{
               marginBottom: "1.5em",
               fontSize: "2em",
-              fontFamily: "Oswald, sans-serif"
+              fontFamily: "Oswald, sans-serif",
             }}
           >
             <div
               style={{
                 fontWeight: "bold",
                 marginBottom: ".5em",
-                color: "green"
+                color: "green",
               }}
             >
               {item.username}
@@ -650,7 +675,7 @@ function UserInfo(props) {
                   fontSize: ".6em",
                   color: "grey",
                   fontStyle: "italic",
-                  marginLeft: ".5em"
+                  marginLeft: ".5em",
                 }}
               >
                 (since {Moment(item.updatedAt).format("MM-DD-YYYY HH:MM")})
@@ -687,17 +712,19 @@ function updateUserData(e) {
   let data = {
     username: document.getElementById("userDataChoose").value,
     password: document.getElementById("userDataPassword").value,
-    group: document.getElementById("userDataGroup").value
+    group: document.getElementById("userDataGroup").value,
   };
-  Axios.post("/api/updateuser/", data)
-    .then(resp => {
+  Axios.post("http://localhost:3001/api/updateuser/", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
       console.log("User Info Updated!");
       document.getElementById("userDataChoose").value = "";
       document.getElementById("userDataPassword").value = "";
       document.getElementById("userDataGroup").value = "";
       window.location.reload();
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -705,12 +732,14 @@ function updateUserData(e) {
 function deleteUserData(e) {
   e.preventDefault();
   let data = document.getElementById("userDataDelChoose").value;
-  Axios.post("/api/deleteuser/" + data)
-    .then(resp => {
+  Axios.post("http://localhost:3001/api/deleteuser/" + data, {
+    withCredentials: true,
+  })
+    .then((resp) => {
       console.log("Deleted!");
       window.location.reload();
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -718,19 +747,18 @@ function deleteUserData(e) {
 function UpdateUser() {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    Axios.get("/api/getuser/")
-      .then(resp => {
-        // console.log("newStatementUsers: ", resp.data)
+    Axios.get("http://localhost:3001/api/getuser/", { withCredentials: true })
+      .then((resp) => {
         setUserData(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
   return (
     <div>
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           updateUserData(e);
         }}
       >
@@ -739,7 +767,7 @@ function UpdateUser() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {userData.map(item => (
+            {userData.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -767,7 +795,7 @@ function UpdateUser() {
       <br />
       <br />
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           deleteUserData(e);
         }}
       >
@@ -776,7 +804,7 @@ function UpdateUser() {
           <Form.Label>Choose User</Form.Label>
           <Form.Control as="select">
             <option>Select...</option>
-            {userData.map(item => (
+            {userData.map((item) => (
               <option key={item._id}>{item.username}</option>
             ))}
           </Form.Control>
@@ -796,12 +824,13 @@ function UserTab() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/getactivity0/")
-      .then(resp => {
-        // console.log("getActivity0: ", resp.data);
+    Axios.get("http://localhost:3001/api/getactivity0/", {
+      withCredentials: true,
+    })
+      .then((resp) => {
         setUsers(resp.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -825,7 +854,7 @@ function UserTab() {
 function WelcomTab() {
   const welcomeStyle = {
     textAlign: "center",
-    padding: "6em"
+    padding: "6em",
   };
   return (
     <div style={welcomeStyle}>
@@ -833,7 +862,7 @@ function WelcomTab() {
         style={{
           marginBottom: "2em",
           fontFamily: "Great Vibes",
-          fontSize: "4em"
+          fontSize: "4em",
         }}
       >
         "Simplicity is the Ultimate Sophistication"{" "}
@@ -868,7 +897,7 @@ export default function Admin() {
     marginTop: "2em",
     marginBottom: "2em",
     backgroundColor: "white",
-    padding: "2em"
+    padding: "2em",
   };
   const tabStyle = {
     // color: "blue"

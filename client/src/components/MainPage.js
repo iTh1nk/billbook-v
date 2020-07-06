@@ -16,7 +16,7 @@ export default function MainPage(props) {
   const [cycles, setCycle] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/getcycle/", { withCredentials: true })
+    Axios.get("http://100.26.98.176/api/getcycle/", { withCredentials: true })
       .then((resp) => {
         setCycle(resp.data);
       })

@@ -25,7 +25,7 @@ function App() {
   const [group, setGroup] = useState("");
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/isloggedin/", {
+    Axios.get("http://100.26.98.176/api/isloggedin/", {
       withCredentials: true,
     })
       .then((resp) => {

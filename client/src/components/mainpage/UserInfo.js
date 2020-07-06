@@ -37,7 +37,7 @@ export default function UserInfo(props) {
   useEffect(() => {
     setUser(props.user);
     setGroup(props.group);
-    Axios.get("http://localhost:3001/api/getactivity1/" + user, {
+    Axios.get("http://100.26.98.176/api/getactivity1/" + user, {
       withCredentials: true,
     })
       .then((resp) => {
@@ -74,7 +74,7 @@ export default function UserInfo(props) {
       totalBalance: getTotalBalance()[0],
     };
     document.getElementById("userDeposit").value = "";
-    Axios.post("http://localhost:3001/api/updateactivity1/", data, {
+    Axios.post("http://100.26.98.176/api/updateactivity1/", data, {
       withCredentials: true,
     })
       .then((resp) => {

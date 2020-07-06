@@ -19,7 +19,7 @@ function newActivity(e) {
     approval: document.getElementById("newActivityApproval").value,
   };
   Axios.post(
-    "http://100.26.98.176/api/newactivity",
+    "https://api.ith1nk.com/api/newactivity",
     { withCredentials: true },
     data
   )
@@ -37,7 +37,7 @@ function approveActivity(e) {
     username: document.getElementById("approveActivityUser").value,
   };
   Axios.post(
-    "http://100.26.98.176/api/approveactivity/",
+    "https://api.ith1nk.com/api/approveactivity/",
     { withCredentials: true },
     data
   )
@@ -56,7 +56,7 @@ function updateActivity(e) {
     approval: document.getElementById("updateActivityApproval").value,
   };
   Axios.post(
-    "http://100.26.98.176/api/updateactivity0",
+    "https://api.ith1nk.com/api/updateactivity0",
     { withCredentials: true },
     data
   )
@@ -69,7 +69,7 @@ function updateActivity(e) {
 
 function deleteActivity(e) {
   let data = document.getElementById("deleteActivityId").value;
-  Axios.post("http://100.26.98.176/api/delactivityid/" + data, {
+  Axios.post("https://api.ith1nk.com/api/delactivityid/" + data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -157,7 +157,7 @@ function ActivityTab() {
   };
 
   useEffect(() => {
-    Axios.get("http://100.26.98.176/api/getactivity0/", {
+    Axios.get("https://api.ith1nk.com/api/getactivity0/", {
       withCredentials: true,
     })
       .then((resp) => {
@@ -166,7 +166,7 @@ function ActivityTab() {
       .catch((err) => {
         console.log(err);
       });
-    Axios.get("http://100.26.98.176/api/getuser/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/getuser/", { withCredentials: true })
       .then((resp) => {
         setAllUsers(resp.data);
       })
@@ -359,7 +359,7 @@ function newStatement(e) {
     currentBalance: document.getElementById("newStatementCurrentBalance").value,
     notes: document.getElementById("newStatementNotes").value || "NA",
   };
-  Axios.post("http://100.26.98.176/api/newstatement", data, {
+  Axios.post("https://api.ith1nk.com/api/newstatement", data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -378,7 +378,7 @@ function updateStatement(e) {
       .value,
     notes: document.getElementById("updateStatementNotes").value,
   };
-  Axios.post("http://100.26.98.176/api/updatestatement/", data, {
+  Axios.post("https://api.ith1nk.com/api/updatestatement/", data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -394,7 +394,7 @@ function StatementTab() {
   const [cycles, setCycles] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://100.26.98.176/api/getstatement/", {
+    Axios.get("https://api.ith1nk.com/api/getstatement/", {
       withCredentials: true,
     })
       .then((resp) => {
@@ -404,7 +404,7 @@ function StatementTab() {
         console.log(err);
       });
 
-    Axios.get("http://100.26.98.176/api/getuser/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/getuser/", { withCredentials: true })
       .then((resp) => {
         setUsers(resp.data);
       })
@@ -412,7 +412,7 @@ function StatementTab() {
         console.log(err);
       });
 
-    Axios.get("http://100.26.98.176/api/getcycle/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/getcycle/", { withCredentials: true })
       .then((resp) => {
         setCycles(resp.data);
       })
@@ -523,7 +523,7 @@ function newCycle(e) {
   let data = {
     date: document.getElementById("newCycleDate").value,
   };
-  Axios.post("http://100.26.98.176/api/newcycle/", data, {
+  Axios.post("https://api.ith1nk.com/api/newcycle/", data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -538,7 +538,7 @@ function udpateCycle(e) {
     chooseDate: document.getElementById("updateCycleChooseDate").value,
     date: document.getElementById("updateCycleDate").value,
   };
-  Axios.post("http://100.26.98.176/api/updatecycle/", data, {
+  Axios.post("https://api.ith1nk.com/api/updatecycle/", data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -552,7 +552,7 @@ function CycleTab() {
   const [cycles, setCycles] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://100.26.98.176/api/getcycle/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/getcycle/", { withCredentials: true })
       .then((resp) => {
         setCycles(resp.data);
       })
@@ -714,7 +714,7 @@ function updateUserData(e) {
     password: document.getElementById("userDataPassword").value,
     group: document.getElementById("userDataGroup").value,
   };
-  Axios.post("http://100.26.98.176/api/updateuser/", data, {
+  Axios.post("https://api.ith1nk.com/api/updateuser/", data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -732,7 +732,7 @@ function updateUserData(e) {
 function deleteUserData(e) {
   e.preventDefault();
   let data = document.getElementById("userDataDelChoose").value;
-  Axios.post("http://100.26.98.176/api/deleteuser/" + data, {
+  Axios.post("https://api.ith1nk.com/api/deleteuser/" + data, {
     withCredentials: true,
   })
     .then((resp) => {
@@ -747,7 +747,7 @@ function deleteUserData(e) {
 function UpdateUser() {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    Axios.get("http://100.26.98.176/api/getuser/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/getuser/", { withCredentials: true })
       .then((resp) => {
         setUserData(resp.data);
       })
@@ -824,7 +824,7 @@ function UserTab() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://100.26.98.176/api/getactivity0/", {
+    Axios.get("https://api.ith1nk.com/api/getactivity0/", {
       withCredentials: true,
     })
       .then((resp) => {

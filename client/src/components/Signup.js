@@ -33,11 +33,11 @@ class Signup extends Component {
       group: document.getElementById("formSignupGroup").value,
     };
 
-    Axios.post("http://100.26.98.176/api/signup/", signupData, {
+    Axios.post("https://api.ith1nk.com/api/signup/", signupData, {
       withCredentials: true,
     })
       .then((resp) => {
-        Axios.get("http://100.26.98.176/api/isloggedin/", {
+        Axios.get("https://api.ith1nk.com/api/isloggedin/", {
           withCredentials: true,
         })
           .then((respSub) => {
@@ -73,11 +73,11 @@ class Signup extends Component {
       group: document.getElementById("formSignupGroup").value,
     };
 
-    Axios.post("http://100.26.98.176/api/signupadmin/", signupData, {
+    Axios.post("https://api.ith1nk.com/api/signupadmin/", signupData, {
       withCredentials: true,
     })
       .then((resp) => {
-        Axios.get("http://100.26.98.176/api/isloggedin/", {
+        Axios.get("https://api.ith1nk.com/api/isloggedin/", {
           withCredentials: true,
         })
           .then((respSub) => {

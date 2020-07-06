@@ -11,7 +11,7 @@ export default class Navs extends Component {
 
   handleOnClickLogout = (event) => {
     event.preventDefault();
-    Axios.get("http://100.26.98.176/api/logout/", { withCredentials: true })
+    Axios.get("https://api.ith1nk.com/api/logout/", { withCredentials: true })
       .then((resp) => {
         window.location.replace("/");
         console.log("Logged Out!");

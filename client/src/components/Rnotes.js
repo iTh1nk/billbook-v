@@ -82,7 +82,8 @@ export default function Rnotes() {
             Production Ready {"cors(options)"}{" "}
             {"axios - {withCredentials: true} - Passport"} <br />
             Custom domain <br />
-            SSL Implemented
+            SSL Implemented <br />
+            Nginx subdomain API SSL
           </pre>
         }
       />

@@ -11,3 +11,4 @@
 ---
 * The app use ```Formik```, ```Yup``` to do real-time form check include userID and PIN; 
 * Using ```React Hooks``` to display admin page tabs, user name, and share state value between different components;
+* ```CORS(corsOptions)``` on backend, ```{withCredentials: true}``` on frontend with ```axios```;

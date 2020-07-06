@@ -69,9 +69,20 @@ export default function Rnotes() {
         version={<InProgress />}
         content={
           <pre>
-            Test bugs <br />
-            Occasionally monitor and maintenance <br />
-            Seek server side with Django / Spring
+            Maintenance <br />
+            SwiftUI(iOS, iPadOS, macOS)
+          </pre>
+        }
+      />
+      <Progress
+        version="v 1.1"
+        date="04.30.2020"
+        content={
+          <pre>
+            Production Ready {"cors(options)"}{" "}
+            {"axios - {withCredentials: true} - Passport"} <br />
+            Custom domain <br />
+            SSL Implemented
           </pre>
         }
       />

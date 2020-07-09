@@ -76,7 +76,7 @@ export default function Rnotes() {
       />
       <Progress
         version="v 1.1"
-        date="04.30.2020"
+        date="07.05.2020"
         content={
           <pre>
             Production Ready {"cors(options)"}{" "}

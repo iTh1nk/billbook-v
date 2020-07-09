@@ -45,6 +45,9 @@ app.use(flash());
 app.use("/api/test", (req, res) => {
   return res.send("hello");
 });
+app.use("/api/a/json", (req, res) => {
+  return res.json({message: "No One Else Like You!"})
+})
 
 require("./config/passport/passport")(passport, db.User);
 require("./routes/routes")(app, passport);

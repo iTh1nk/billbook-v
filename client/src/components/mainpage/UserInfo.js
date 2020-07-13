@@ -37,7 +37,7 @@ export default function UserInfo(props) {
   useEffect(() => {
     setUser(props.user);
     setGroup(props.group);
-    Axios.get("https://api.ith1nk.com/api/getactivity1/" + user, {
+    Axios.get("https://api.we0mmm.site/api/getactivity1/" + user, {
       withCredentials: true,
     })
       .then((resp) => {
@@ -74,7 +74,7 @@ export default function UserInfo(props) {
       totalBalance: getTotalBalance()[0],
     };
     document.getElementById("userDeposit").value = "";
-    Axios.post("https://api.ith1nk.com/api/updateactivity1/", data, {
+    Axios.post("https://api.we0mmm.site/api/updateactivity1/", data, {
       withCredentials: true,
     })
       .then((resp) => {

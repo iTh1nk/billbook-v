@@ -31,11 +31,11 @@ class Login extends Component {
       password: document.getElementById("loginGpin").value,
     };
 
-    Axios.post("https://api.ith1nk.com/api/login/", signupData, {
+    Axios.post("https://api.we0mmm.site/api/login/", signupData, {
       withCredentials: true,
     })
       .then((resp) => {
-        Axios.get("https://api.ith1nk.com/api/isloggedin/", {
+        Axios.get("https://api.we0mmm.site/api/isloggedin/", {
           withCredentials: true,
         })
           .then((respSub) => {

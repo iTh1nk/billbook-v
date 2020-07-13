@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const corsOptions = {
-  origin: "https://we0mmm.site",
+  origin: "/\.we0mmm\.site$/",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTION",
   credentials: true,
   origin: true,

@@ -19,9 +19,9 @@ function newActivity(e) {
     approval: document.getElementById("newActivityApproval").value,
   };
   Axios.post(
-    "https://api.we0mmm.site/api/newactivity",
+    "https://api.we0mmm.site/api/newactivity",data,
     { withCredentials: true },
-    data
+    
   )
     .then((resp) => {
       window.location.reload();
@@ -36,13 +36,10 @@ function approveActivity(e) {
     approval: document.getElementById("approveActivityApproval").value,
     username: document.getElementById("approveActivityUser").value,
   };
-  Axios.post(
-    "https://api.we0mmm.site/api/approveactivity/",
-    { withCredentials: true },
-    data
-  )
-    .then((resp) => {
-    })
+  Axios.post("https://api.we0mmm.site/api/approveactivity/", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -55,13 +52,10 @@ function updateActivity(e) {
     deposit: document.getElementById("updateActivityDeposit").value,
     approval: document.getElementById("updateActivityApproval").value,
   };
-  Axios.post(
-    "https://api.we0mmm.site/api/updateactivity0",
-    { withCredentials: true },
-    data
-  )
-    .then((resp) => {
-    })
+  Axios.post("https://api.we0mmm.site/api/updateactivity0", data, {
+    withCredentials: true,
+  })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -72,8 +66,7 @@ function deleteActivity(e) {
   Axios.post("https://api.we0mmm.site/api/delactivityid/" + data, {
     withCredentials: true,
   })
-    .then((resp) => {
-    })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -362,8 +355,7 @@ function newStatement(e) {
   Axios.post("https://api.we0mmm.site/api/newstatement", data, {
     withCredentials: true,
   })
-    .then((resp) => {
-    })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -381,8 +373,7 @@ function updateStatement(e) {
   Axios.post("https://api.we0mmm.site/api/updatestatement/", data, {
     withCredentials: true,
   })
-    .then((resp) => {
-    })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -412,7 +403,9 @@ function StatementTab() {
         console.log(err);
       });
 
-    Axios.get("https://api.we0mmm.site/api/getcycle/", { withCredentials: true })
+    Axios.get("https://api.we0mmm.site/api/getcycle/", {
+      withCredentials: true,
+    })
       .then((resp) => {
         setCycles(resp.data);
       })
@@ -526,8 +519,7 @@ function newCycle(e) {
   Axios.post("https://api.we0mmm.site/api/newcycle/", data, {
     withCredentials: true,
   })
-    .then((resp) => {
-    })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -541,8 +533,7 @@ function udpateCycle(e) {
   Axios.post("https://api.we0mmm.site/api/updatecycle/", data, {
     withCredentials: true,
   })
-    .then((resp) => {
-    })
+    .then((resp) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -552,7 +543,9 @@ function CycleTab() {
   const [cycles, setCycles] = useState([]);
 
   useEffect(() => {
-    Axios.get("https://api.we0mmm.site/api/getcycle/", { withCredentials: true })
+    Axios.get("https://api.we0mmm.site/api/getcycle/", {
+      withCredentials: true,
+    })
       .then((resp) => {
         setCycles(resp.data);
       })

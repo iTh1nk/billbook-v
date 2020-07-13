@@ -1,3 +1,8 @@
+/*
+ * Created(Part) on Mon Jul 13 2020
+ *
+ * Copyright (c) 2020 We0mmm
+ */
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -27,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const corsOptions = {
-  origin: "https://www.ith1nk.com",
+  origin: "https://vzw.we0mmm.site",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTION",
   credentials: true,
   origin: true,

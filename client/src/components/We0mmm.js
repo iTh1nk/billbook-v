@@ -1,3 +1,9 @@
+/*
+ * Created(Part) on Mon Jul 13 2020
+ *
+ * Copyright (c) 2020 We0mmm
+ */
+
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import "./We0mmm.css";
@@ -7,7 +13,7 @@ function We0mmm() {
   useEffect(() => {
     toaster.notify(
       <div style={{ fontWeight: "bold", color: "#e95421" }}>
-        "Cycle 06-09 Bill Statement is READY!”
+        "Cycle 07-09 Bill Statement is READY!”
       </div>,
       {
         duration: null,

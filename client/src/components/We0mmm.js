@@ -13,7 +13,8 @@ function We0mmm() {
   useEffect(() => {
     toaster.notify(
       <div style={{ fontWeight: "bold", color: "#e95421" }}>
-        "Cycle 07-09 Bill Statement is READY!”
+        {/* "Cycle 07-09 Bill Statement is READY!” */}
+        New statement will be available soon...
       </div>,
       {
         duration: null,
@@ -55,6 +56,36 @@ function We0mmm() {
           sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
           src="https://embed.music.apple.com/us/album/mojito/1517801027?i=1517801028"
         ></iframe> */}
+      </div>
+      <div
+        style={{
+          margin: "auto",
+          textAlign: "left",
+          color: "white",
+          backgroundColor: "black",
+          width: "18em",
+          padding: "1em",
+          fontWeight: "bold",
+          borderRadius: "1em",
+        }}
+      >
+        <p style={{ textAlign: "" }}>
+          New version of Billbook(web) is coming out...
+        </p>
+        <p style={{ textAlign: "", textDecoration: "underline" }}>
+          <a
+            href="https://billbook-v2.vercel.app/"
+            style={{ color: "lightgreen" }}
+          >
+            Take a peek
+            <img
+              src="/eye.png"
+              alt="eye"
+              className="App-logo"
+              style={{ width: "1.5em", height: "1.5em", marginLeft: "1em" }}
+            />
+          </a>
+        </p>
       </div>
     </>
   );

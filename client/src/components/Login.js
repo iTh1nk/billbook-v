@@ -26,12 +26,12 @@ class Login extends Component {
       dateSelected: !this.state.dateSelected,
     });
 
-    let signupData = {
+    let loginData = {
       username: document.getElementById("loginGuid").value,
       password: document.getElementById("loginGpin").value,
     };
 
-    Axios.post("https://api.we0mmm.site/api/login/", signupData, {
+    Axios.post("https://api.we0mmm.site/api/login/", loginData, {
       withCredentials: true,
     })
       .then((resp) => {

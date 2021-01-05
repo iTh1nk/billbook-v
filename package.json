@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/iTh1nk/billbook-att#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcrypt-nodejs": "0.0.3",
     "bootstrap": "^4.4.1",
     "colors": "^1.4.0",
